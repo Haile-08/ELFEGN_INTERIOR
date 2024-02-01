@@ -1,0 +1,55 @@
+.blog-admin-comment {
+    width: 100dvw;
+    height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    background-color: #ffffff;
+}
+
+.blog-admin-comment p{
+    font-size: 25px;
+    font-family: 'Lato', sans-serif;
+}
+
+.blog-admin-comment .comment-lists {
+    width: 100dvw;
+    height: 90dvh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    overflow-y: scroll;
+    overflow-x: hidden; 
+    
+}
+
+.blog-admin-comment .comment-lists .comment {
+    width: 30dvw;
+    background-color: #f1f2f6;
+}
+
+.blog-admin-comment .comment-lists .comment .comment-text {
+    word-break: break-all;
+}
+
+.blog-admin-comment .comment-lists .comment button{
+    width: 30dvw;
+    height: 5dvh;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    background-color: #ff4757;
+    margin: 10px 0px;
+    color: #fff;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 600px) {
+    .blog-admin-comment .comment-lists .comment {
+        width: 50dvw;
+        background-color: #f1f2f6;
+    }
+    
+}

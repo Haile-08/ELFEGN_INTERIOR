@@ -1,0 +1,268 @@
+.product-post {
+    width: 100dvw;
+    height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.seller-post-gift {
+    width: 80dvw;
+    height: 90dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 20px;
+    background-color: #f1f2f6;
+}
+
+.seller-post-gift .back{
+    width: 90%; 
+    height: 6dvh;
+    display: flex;
+    align-items: flex-end;
+}
+.seller-post-gift .back img{
+    width: 2dvw;
+    cursor: pointer;
+}
+
+.seller-post-gift form{
+    width: 80%;
+    height: 85%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.seller-post-gift form .tip{
+    width: 51dvw;
+    font-family: 'Lato', sans-serif;
+}
+
+.seller-post-gift form .tip a{
+    color: #546de5;
+    cursor: pointer;
+}
+
+.seller-post-gift form .mobile-tip{
+    display: none;
+}
+
+.seller-post-gift .seller-post-gift-title {
+    width: 65%;
+}
+
+.seller-post-gift .seller-post-gift-title p{
+    font-size: 25px;
+    font-family: 'Lato', sans-serif;
+}
+
+.seller-post-gift form .seller-drag-and-drop {
+    width: 80%;
+    height: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    border: 1px dashed #2f3542;
+}
+.seller-post-gift form .seller-drag-and-drop .seller-drop-zone{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    cursor: pointer;
+}
+.seller-post-gift form .seller-drag-and-drop .seller-drop-zone p{
+    margin: 5px 0px;
+    font-size: 25px;
+    font-family: 'Lato', sans-serif;
+}
+
+.seller-post-gift form .seller-drag-and-drop .seller-drop-zone-active{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.seller-post-gift form .seller-drag-and-drop  p{
+    font-size: 25px;
+    font-family: 'Lato', sans-serif;
+}
+
+.seller-post-gift form input{
+    width: 78.6%;
+    height: 8%;
+    margin-top: 10px;
+    padding-left: 20px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    font-family: 'Lato', sans-serif;
+}
+
+
+.seller-post-gift form .description-hidden{
+    outline: none;
+    border: none;
+    width: 50dvw;
+    height: 15dvh;
+    margin: 10px;
+    padding-left: 20px;
+    font-size: 15px;
+    font-family: 'Lato', sans-serif;
+    border-radius: 5px;
+    background-color: #ffffffbd;
+}
+
+.seller-post-gift form .description-show{
+    outline: none;
+    border: solid 1px #ff3838;
+    width: 49.5dvw;
+    height: 15dvh;
+    margin: 10px;
+    margin-bottom: 0dvw;
+    padding-left: 30px;
+    font-size: 15px;
+    font-family: 'Lato', sans-serif;
+    border-radius: 5px;
+    background-color: #ffffffbd;
+}
+
+.seller-post-gift form .input-box .error {
+    height: 4dvh;
+    width: 48dvw;
+    color: #ff3838;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0;
+    padding: 0px 10px;
+    font-family: 'Lato', sans-serif;
+}
+
+.seller-post-gift form .input-box .error img {
+    margin: 0;
+    padding: 0;
+    width: 25px;
+    margin-right: 5px;
+}
+
+
+.seller-post-gift form button{
+    margin-top: 20px;
+    width: 80%;
+    height: 10%;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 25px;
+    font-family: 'Lato', sans-serif;
+    background-color: #c44569;
+    color: #fff;
+}
+
+.seller-post-gift form select{
+    width: 80%;
+    height: 50px;
+    margin-top: 20px;
+    outline: none;
+    border: none;
+    border-radius: 1px;
+    margin-bottom: 10px;
+    padding-left: 20px;
+    font-family: 'Lato', sans-serif;
+    font-size: 20px;
+    background-color: #ffffff;
+}
+
+.seller-post-gift form .success-message {
+    width: 80%;
+    height: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: #fff;
+    margin: 10px 0px;
+    border-radius: 5px;
+    font-family: 'Lato', sans-serif;
+    background-color: #2ed57493;
+}
+
+.seller-post-gift form .success-message p {
+    font-size: 18px;
+}
+
+@media screen and (max-width: 600px) {
+.seller-post-gift .back img{
+    width: 8dvw;
+    cursor: pointer;
+}
+.seller-post-gift .seller-post-gift-title p{
+    font-size: 20px;
+    margin: 10px 0px;
+    font-family: 'Lato', sans-serif;
+}
+.seller-post-gift form .seller-drag-and-drop {
+    width: 60dvw;
+    height: 20dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    border: 1px dashed #2f3542;
+}
+.seller-post-gift form .seller-drag-and-drop .seller-drop-zone{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    cursor: pointer;
+}
+.seller-post-gift form .seller-drag-and-drop .seller-drop-zone p{
+    margin: 5px 0px;
+    font-size: 15px;
+    font-family: 'Lato', sans-serif;
+}
+
+.seller-post-gift form .seller-drag-and-drop .seller-drop-zone-active{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.seller-post-gift form select{
+    width: 85%;
+    height: 50px;
+    margin-top: 20px;
+    outline: none;
+    border: none;
+    border-radius: 1px;
+    margin-bottom: 10px;
+    padding-left: 20px;
+    font-family: 'Lato', sans-serif;
+    font-size: 20px;
+    background-color: #ffffff;
+}
+
+.seller-post-gift form .tip{
+    display: none;
+}
+
+.seller-post-gift form .mobile-tip{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 51dvw;
+    font-family: 'Lato', sans-serif;
+}
+
+.seller-post-gift form .mobile-tip a{
+    color: #546de5;
+    cursor: pointer;
+}
+}

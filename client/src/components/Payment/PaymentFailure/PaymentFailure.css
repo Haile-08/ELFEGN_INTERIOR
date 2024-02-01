@@ -1,0 +1,94 @@
+.payment-failure {
+    width: 40dvw;
+    height: 70dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.payment-failure .payment-failure-check {
+    width: 12dvw;
+    height: 12dvw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #ff475686;
+}
+
+.payment-failure .payment-failure-check img{
+    width: 7dvw;
+}
+.payment-failure .payment-failure-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.payment-failure .payment-failure-text h3 {
+    font-size: 30px;
+    font-family: 'Lato', sans-serif;
+}
+
+.payment-failure .payment-failure-text p{
+    font-size: 18px;
+    font-family: 'Lato', sans-serif;
+}
+
+.payment-failure button{
+    width: 13dvw;
+    height: 5dvh;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 30px;
+    font-size: 21px;
+    background-color: #ff4757;
+    color: #fff;
+    font-family: 'Lato', sans-serif;
+}
+@media screen and (max-width: 600px) {
+    .payment-failure .payment-failure-check {
+        width: 40dvw;
+        height: 40dvw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background-color: #ff475686;
+    }
+    .payment-failure .payment-failure-check img{
+        width: 27dvw;
+    }
+    .payment-failure .payment-failure-text h3 {
+        width: 70dvw;
+        font-size: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Lato', sans-serif;
+    }
+    .payment-failure .payment-failure-text p{
+        width: 70dvw;
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Lato', sans-serif;
+    }
+    .payment-failure button{
+        width: 50dvw;
+        height: 8dvh;
+        outline: none;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 30px;
+        font-size: 21px;
+        background-color: #ff4757;
+        color: #fff;
+        font-family: 'Lato', sans-serif;
+    }
+}

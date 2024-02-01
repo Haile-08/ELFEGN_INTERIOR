@@ -1,0 +1,438 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+.buyer {
+    width: 100vw;
+    height: 100vh;
+    background-color: #ffffff;
+    display: flex;
+}
+
+.buyer-sidebar {
+    width: 30vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    margin-left: 0;
+    font-family: 'Lato', sans-serif;
+    background-color: #f1f2f6;
+    z-index: 99999;
+}
+
+.buyer-sidebar-nav {
+    width: 5dvw;
+    height: 100dvh;
+    margin-left: 3dvw;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 5dvw;
+}
+
+.buyer-sidebar-nav-two{
+    width: 5dvw;
+    height: 100dvh;
+    margin-left: 3dvw;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 5dvw;
+    position: fixed;
+    left: 0;
+}
+
+.buyer-tag {
+    width: 20dvw;  
+    padding-left: 100px; 
+    font-size: 20px;
+    font-family: 'Lato', sans-serif;
+}
+
+.buyer-tag-title {
+    font-size: 4dvh;
+    padding: 0px;
+    margin: 10px 0px;
+}
+
+.price-tag input{
+    outline: none;
+    border: none;
+    width: 20px;
+    margin-right: 10px;
+}
+
+.date-tag input {
+    outline: none;
+    border: none;
+    width: 20px;
+    margin: 0px;
+    margin-right: 10px;
+}
+.price-tag {
+    display: flex;
+    height: 2.7dvh;
+    margin: 5px 0px;
+}
+
+.price-tag p{
+    font-size: 2dvh;
+    margin: 0;
+}
+
+.date-tag {
+    display: flex;
+    height: 2.7dvh;
+    margin: 5px 0px;
+}
+
+.date-tag p{
+    font-size: 2dvh;
+    margin: 0;
+}
+
+.star-tag {
+    display: flex;
+    height: 2.7dvh;
+    margin: 5px 0px;
+}
+
+.star-tag p{
+    font-size: 2dvh;
+    margin: 0;
+}
+
+.category-tag {
+    display: flex;
+    height: 2.7dvh;
+    margin: 5px 0px;
+}
+
+.category-tag p {
+    font-size: 2dvh;
+     margin: 0;
+}
+
+.buyer-sidebar-filter {
+    margin: 0px;
+    width: 25dvw;
+}
+ 
+.buyer-sidebar-nav-logo {
+    padding-top: 20px;
+    height: 33dvh; 
+    width: 5dvw;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.buyer-sidebar-nav-logo img {
+    width: 4dvw;
+    margin-top: 30px;
+    transform: rotate(90deg);
+}
+
+.buyer-sidebar-nav-plus {
+    height: 33dvh;
+    width: 5dvw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+}
+
+.buyer-sidebar-nav-plus-box {
+    width: 2dvw;
+    height: 4dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-right: 20px;
+    cursor: pointer;
+    background-color: #2f3542;
+}
+
+.buyer-sidebar-nav-plus-box img{
+    width: 1dvw;
+}
+
+.buyer-sidebar-nav-btns {
+    height: 33dvh;
+    width: 6dvw;
+    margin-right: 20px;
+    display: flex;
+    align-items: space-evenly;
+    justify-content: flex-end;
+    flex-direction: column;
+    background-color: transparent;
+} 
+
+.buyer-sidebar-nav-btns button{
+    width: 4dvw;
+    height: 4dvh;
+    margin: 10px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-family: 'Lato', sans-serif;
+    background-color: #f1f2f6;
+    cursor: pointer;
+}
+
+.buyer-sidebar-nav-btns button img{
+    width: 1.3dvw;
+    margin-right: 10px;
+}
+
+.buyer-sidebar-nav-btns button p{
+    font-size: 13px;
+}
+
+.buyer-sidebar-nav-shadow {
+    background-color: rgba(47, 53, 66, 0.5);
+    width: 70dvw;
+    height: 100dvh;
+    margin-left: 30dvw;
+    position: fixed;
+    z-index: 99999;
+}
+
+.buyer-gift-lists {
+    width: 100dvw;
+    height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* HTML: <div class="loader"></div> */
+.buyer-loader {
+    width: 50px;
+    padding: 8px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: #c44569;
+    --_m: 
+      conic-gradient(#0000 10%,#000),
+      linear-gradient(#000 0 0) content-box;
+    -webkit-mask: var(--_m);
+            mask: var(--_m);
+    -webkit-mask-composite: source-out;
+            mask-composite: subtract;
+    animation: l3 1s infinite linear;
+  }
+  @keyframes l3 {to{transform: rotate(1turn)}}
+
+@media screen and (max-width: 600px) {
+    .buyer-sidebar-filter {
+        margin: 0px;
+        width: 60dvw;
+        height: 100dvh;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-direction: column;
+        z-index: 21;
+        background-color: #ffffff;
+    }
+    .buyer-sidebar {
+        width: 70dvw;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        position: fixed;
+        margin-left: 0;
+        font-family: 'Lato', sans-serif;
+        z-index: 20;
+        margin-right: 10dvw;
+        background-color: #ffffff;
+    }
+    .buyer-tag {
+        width: 48dvw; 
+        margin: 5px 0px;  
+        font-size: 20px;
+        padding-left: 50px;
+        font-family: 'Lato', sans-serif;
+    }
+    .buyer-tag .price-tag p{
+        margin: 0;
+        font-size: 2dvh;
+    }
+
+    .buyer-tag .date-tag p{
+        margin: 0;
+        font-size: 2dvh;
+    }
+    .buyer-tag .star-tag p{
+        margin: 0;
+        font-size: 2dvh;
+    }
+    .buyer-tag .category-tag p {
+        margin: 0;
+        font-size: 2dvh;
+   }
+    .buyer-tag p{
+        margin: 0;
+        padding: 0;
+        font-size: 2dvh;
+    }
+    .buyer .buyer-sidebar-nav-shadow {
+        width: 20dvw;
+        height: 100dvh;
+        margin-left: 70dvw;
+        position: fixed;
+    }
+    .seller .buyer-sidebar-nav-shadow {
+        width: 20dvw;
+        height: 100dvh;
+        margin-left: 70dvw;
+        position: fixed;
+    }
+    .buyer .buyer-sidebar .buyer-sidebar-nav {
+        width: 30dvw;
+        height: 100dvh;
+        margin-left: 3dvw;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .buyer .buyer-sidebar .buyer-sidebar-nav .buyer-sidebar-nav-logo {
+        padding-top: 20px;
+        height: 33dvh; 
+        width: 10dvw;
+        cursor: pointer;
+        background-color: transparent;
+    }
+    
+    .buyer .buyer-sidebar .buyer-sidebar-nav .buyer-sidebar-nav-logo img {
+        width: 10dvw;
+        margin-top: 30px;
+        transform: rotate(90deg);
+    }
+    .buyer .buyer-sidebar .buyer-sidebar-nav .buyer-sidebar-nav-plus {
+        height: 33dvh;
+        width: 10dvw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: transparent;
+    }
+    .buyer .buyer-sidebar .buyer-sidebar-nav .buyer-sidebar-nav-plus img{
+        width: 3dvw;
+    }
+    .buyer-sidebar-nav-plus-box {
+        width: 10dvw;
+        height: 9dvw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%; 
+        cursor: pointer;
+        margin: 5px;
+        background-color: #2f3542;
+    }
+    .buyer-sidebar-nav-btns {
+        height: 33dvh;
+        width: 10dvw;
+        display: flex;
+        align-items: space-evenly;
+        justify-content: flex-end;
+        flex-direction: column;
+        margin: 0;
+        background-color: transparent;
+    } 
+    .buyer-sidebar-nav-btns button{
+        width: 4dvw;
+        height: 4dvh;
+        margin: 10px;
+        cursor: pointer;
+        outline: none;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        font-family: 'Lato', sans-serif;
+        background-color: #fff;
+        cursor: pointer;
+    }
+    .buyer-sidebar-nav-btns button img{
+        width: 5dvw;
+        margin-right: 10px;
+    }
+    
+    .buyer-sidebar-nav-btns button p{
+        display: none;
+    }
+    .buyer .buyer-gift-lists .buyer-sidebar-nav-two{
+        width: 10dvw;
+        height: 100dvh;
+        margin-left: 3dvw;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        position: fixed;
+        left: 0;
+    }
+    .buyer .buyer-gift-lists .buyer-sidebar-nav-two .buyer-sidebar-nav-logo {
+        padding-top: 20px;
+        height: 33dvh; 
+        width: 10dvw;
+        cursor: pointer;
+        background-color: transparent;
+    }
+    .buyer .buyer-gift-lists .buyer-sidebar-nav-two .buyer-sidebar-nav-logo img{
+        width: 10dvw;
+        margin-top: 30px;
+        transform: rotate(90deg);
+    }
+    .buyer .buyer-gift-lists .buyer-sidebar-nav-two .buyer-sidebar-nav-plus {
+        height: 33dvh;
+        width: 10dvw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: transparent;
+    }
+    .buyer .buyer-gift-lists .buyer-sidebar-nav-two .buyer-sidebar-nav-plus img{
+        width: 3dvw;
+    }
+
+}
+
+
+.buyer-main-loader {
+    width: 100dvw;
+    height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+/* HTML: <div class="loader"></div> */
+.buyer-main-loader .buyer-loader {
+    width: 50px;
+    padding: 8px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: #c44569;
+    --_m: 
+      conic-gradient(#0000 10%,#000),
+      linear-gradient(#000 0 0) content-box;
+    -webkit-mask: var(--_m);
+            mask: var(--_m);
+    -webkit-mask-composite: source-out;
+            mask-composite: subtract;
+    animation: l3 1s infinite linear;
+  }
+  @keyframes l3 {to{transform: rotate(1turn)}}

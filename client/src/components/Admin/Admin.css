@@ -1,0 +1,83 @@
+/* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  * {
+    scrollbar-width: auto;
+    scrollbar-color: #c44569 #f1f2f6;
+  }
+
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 16px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #f1f2f6;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #c44569;
+    border-radius: 10px;
+    border: 3px solid #f1f2f6;
+  }
+
+
+.admin {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Lato', sans-serif; 
+}
+
+.admin-sidebar {
+    color: black;
+    background-color: #506085;
+    height: 100vh;
+}
+
+.sidebar-topic {
+    margin: 40px 10px;
+}
+
+.m-logo {
+    width: 40px;
+}
+
+.header {
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-family: 'Lato', sans-serif; 
+}
+
+.header p{
+    margin-left: 10px;
+    font-size: 20px;
+}
+
+
+.admin-main-loader {
+  width: 100dvw;
+  height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* HTML: <div class="loader"></div> */
+.admin-main-loader .admin-loader {
+  width: 50px;
+  padding: 8px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #c44569;
+  --_m: 
+    conic-gradient(#0000 10%,#000),
+    linear-gradient(#000 0 0) content-box;
+  -webkit-mask: var(--_m);
+          mask: var(--_m);
+  -webkit-mask-composite: source-out;
+          mask-composite: subtract;
+  animation: l3 1s infinite linear;
+}
+@keyframes l3 {to{transform: rotate(1turn)}}

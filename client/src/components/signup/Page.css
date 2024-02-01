@@ -1,0 +1,456 @@
+.page-one {
+    width: 55dvw;
+    height: 95dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    
+}
+
+.page-one .page-one-title {
+    width: 33.5dvw;
+    height: 6dvh;
+    font-size: 25px;
+    display: flex;
+    align-items: center;
+    padding: 50px 0px;
+    justify-content: space-between;
+    font-family: 'Lato', sans-serif;
+    margin-right: 5dvw;
+}
+
+.page-one .page-one-input {
+    width: 40dvw;
+    height: auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.page-one .page-one-input .input-box{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  position: relative;
+}
+
+.page-one .page-one-input .login-error-message {
+    width: 85%;
+    height: 15%;
+}
+.page-one .page-one-input .login-error-message p{
+    margin: 0px 20px;
+    font-size: 20px;
+    color: #ff4757;
+    font-family: 'Lato', sans-serif;
+}
+
+.page-one .show-password {
+    width: 38dvw;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-family: 'Lato', sans-serif;
+}
+
+.page-one .login-btn {
+    width: 38dvw;
+    height: 8dvh;
+    margin: 2dvh 0px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    color: #f0f2f5;
+    font-size: 20px;
+    font-family: 'Lato', sans-serif;
+    background-color: #cf6a87;
+}
+
+.page-one .forget-password {
+    font-size: 20px;
+    cursor: pointer;
+    font-family: 'Lato', sans-serif;
+}
+
+.page-one .page-one-input .input-box .icon-hidden {
+    position: absolute;
+    left: 1dvw;
+    top: 4dvh;
+    font-size: 17px;
+}
+.page-one .page-one-input .input-box .icon-show {
+    position: absolute;
+    left: 1dvw;
+    top: 4dvh;
+    font-size: 17px;
+}
+
+.page-one .page-one-input .account-type-box-choice {
+    width: 40dvw;
+    height: 60dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.page-one .page-one-input .account-type-box-choice  button{
+    outline: none;
+    border: 1px solid #000000;
+    color: #000000;
+    width: 25dvw;
+    height: 25dvh;
+    margin: 1dvw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border-radius: 5px;
+    font-size: 25px;
+    cursor: pointer;
+    font-family: 'Lato', sans-serif;
+}
+
+.page-one .page-one-input .account-type-box-choice  button img{
+    width: 3dvw;
+    margin-right: 40px;
+}
+
+.page-one .page-one-button {
+    width: 40dvw;
+    height: 20dvh;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding-right: 5dvw;
+}
+
+.page-one .page-one-button button {
+    width: 9dvw;
+    height: 5dvh;
+    border: 5px;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    margin: 0px 20px;
+    font-family: 'Lato', sans-serif;
+    border: 1px solid #000;
+    border-radius: 10px;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.page-one .page-one-button button p{
+    padding: 0px 30px;
+}
+
+.page-one .page-one-input .input-box .input-hidden {
+    outline: none;
+    border: none;
+    width: 35dvw;
+    height: 7dvh;
+    margin:  1dvw 0px;
+    padding-left: 50px;
+    font-size: 20px;
+    font-family: 'Lato', sans-serif;
+    border-radius: 5px;
+    background-color: #f1f2f6bd;
+}
+
+.page-one .page-one-input .input-box .input-show {
+    outline: none;
+    border: solid 1px #ff3838;
+    width: 35dvw;
+    height: 7dvh;
+    margin: 0;
+    margin-bottom: 0dvw;
+    padding-left: 50px;
+    font-size: 20px;
+    font-family: 'Lato', sans-serif;
+    border-radius: 5px;
+    background-color: #f1f2f6bd;    
+}
+
+.page-one .page-one-input .input-box .error {
+    height: 4dvh;
+    width: 37dvw;
+    margin: 0vh;
+    color: #ff3838;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.page-one .page-one-input .input-box .error img {
+    margin: 0;
+    padding: 0;
+    width: 25px;
+    margin-right: 5px;
+}
+
+.page-one .page-one-input .input-box .error p {
+    margin: 0;
+    padding: 0;
+    width: 30dvw;
+    height: 4dvh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 15px;
+    color: #ff3838;
+    font-family: 'Lato', sans-serif;
+}
+
+.page-one .page-one-input  .show-password {
+    width: 13dvw;
+    margin: 20px 0px;
+    font-family: 'Lato', sans-serif;
+}
+
+.page-one .page-one-input  .show-password input{
+    width: 1dvw;
+}
+
+.page-one .page-one-button-request {
+    width: 40dvw;
+    height: 10dvh;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+}
+
+.page-one .page-one-button-request button{
+    width: 38dvw;
+    height: 5dvh;
+    border: 5px;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    margin: 0px 0px;
+    font-family: 'Lato', sans-serif;
+    background-color: #c44569;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 600px) {
+    .page-one {
+        width: 100dvw;
+        height: 95dvh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;   
+    }
+    .page-one .page-one-title {
+        width: 60dvw;
+        height: 6dvh;
+        font-size: 25px;
+        display: flex;
+        align-items: center;
+        padding: 50px 0px;
+        justify-content: space-between;
+        font-family: 'Lato', sans-serif;
+        margin-right: 5dvw;
+    }
+    .page-one .page-one-input {
+        width: 65dvw;
+        height: auto;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .page-one .page-one-input .input-box{
+        width: 70dvw;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      position: relative;
+    }
+    .page-one .page-one-input .input-box .input-hidden {
+        outline: none;
+        border: none;
+        width: 60dvw;
+        height: 7dvh;
+        margin:  1dvw;
+        padding-left: 50px;
+        font-size: 20px;
+        font-family: 'Lato', sans-serif;
+        border-radius: 5px;
+        background-color: #f1f2f6bd;
+    }
+    
+    .page-one .page-one-input .input-box .input-show {
+        outline: none;
+        border: solid 1px #ff3838;
+        width: 60dvw;
+        height: 7dvh;
+        margin: 0 1dvw;
+        margin-bottom: 0dvw;
+        padding-left: 50px;
+        font-size: 20px;
+        font-family: 'Lato', sans-serif;
+        border-radius: 5px;
+        background-color: #f1f2f6bd;
+    }
+    .page-one .show-password {
+        width: 60dvw;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        font-family: 'Lato', sans-serif;
+    }
+    .page-one .login-btn {
+        width: 70dvw;
+        height: 8dvh;
+        margin: 2dvh 0px;
+        border-radius: 5px;
+        outline: none;
+        border: none;
+        cursor: pointer;
+        color: #f0f2f5;
+        font-size: 20px;
+        font-family: 'Lato', sans-serif;
+        background-color: #cf6a87;
+    }
+    .page-one .page-one-button {
+        width: 60dvw;
+        height: 20dvh;
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+        padding-right: 5dvw;
+    }
+    .page-one .page-one-button-request {
+        width: 67dvw;
+        height: 10dvh;
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-start;
+    }
+    
+    .page-one .page-one-button-request button{
+        width: 67dvw;
+        height: 7dvh;
+        border: 5px;
+        outline: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        margin: 0px 0px;
+        font-family: 'Lato', sans-serif;
+        background-color: #c44569;
+        border-radius: 5px;
+        color: #fff;
+        cursor: pointer;
+    }
+    
+    .page-one .page-one-button button {
+        width: 20dvw;
+        height: 5dvh;
+        border: 5px;
+        outline: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        margin: 0px 20px;
+        font-family: 'Lato', sans-serif;
+        border: 1px solid #000;
+        background-color: #fff;
+        cursor: pointer;
+    }
+    .page-one .page-one-input .input-box .icon-hidden {
+        position: absolute;
+        left: 1dvw;
+        top: 2dvh;
+        font-size: 17px;
+    }
+    .page-one .page-one-input .input-box .icon-show {
+        position: absolute;
+        left: 1dvw;
+        top: 2dvh;
+        font-size: 17px;
+    }
+    .page-one .page-one-input .input-box .error {
+        height: 4dvh;
+        width: 60dvw;
+        margin: 0vh;
+        color: #ff3838;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .page-one .page-one-input .input-box .error img {
+        margin: 0;
+        padding: 0;
+        width: 20px;
+        margin-right: 5px;
+    }
+    
+    .page-one .page-one-input .input-box .error p {
+        margin: 0;
+        padding: 0;
+        width: 60dvw;
+        height: 4dvh;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        font-size: 15px;
+        color: #ff3838;
+        font-family: 'Lato', sans-serif;
+    }
+    .page-one .page-one-input  .show-password {
+        width: 60dvw;
+        margin: 20px 0px;
+        font-family: 'Lato', sans-serif;
+    }
+    
+    .page-one .page-one-input  .show-password input{
+        width: 10dvw;
+    }
+
+    .page-one .page-one-input .account-type-box-choice {
+        width: 70dvw;
+        height: 60dvh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .page-one .page-one-input .account-type-box-choice  button{
+        outline: none;
+        border: 1px solid #000000;
+        color: #000000;
+        width: 50dvw;
+        height: 25dvh;
+        margin: 1dvw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: transparent;
+        border-radius: 5px;
+        font-size: 25px;
+        cursor: pointer;
+        font-family: 'Lato', sans-serif;
+    }
+    .page-one .page-one-input .account-type-box-choice  button img{
+        width: 10dvw;
+        margin-right: 10px;
+    }
+}

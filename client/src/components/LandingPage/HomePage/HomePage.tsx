@@ -1,0 +1,212 @@
+import "./HomePage.css";
+import logo from "../../../assets/logo.svg";
+import amhlogo from "../../../assets/amhlogo.svg";
+import search from "../../../assets/search.png";
+import telegram from "../../../assets/telegram.png";
+import facebook from "../../../assets/facebook.png";
+import instagram from "../../../assets/instagram.png";
+import close from "../../../assets/close.png";
+import { useNavigate } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
+import { getAllGifts } from "../../../hooks/giftHook";
+import { useQuery } from "react-query";
+import { useTranslation } from "react-i18next";
+import { MdOutlineLanguage } from "react-icons/md";
+
+function HomePage() {
+  const navigate = useNavigate();
+  const [searchModal, setSearchModal] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [searchString, setSearchString] = useState();
+  const gifts = useQuery(["gift"], getAllGifts);
+  const { t, i18n } = useTranslation();
+
+  const startsWith = (str: any) => (word: any) =>
+    str ? word.slice(0, str.length).toLowerCase() === str.toLowerCase() : false;
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  }, []);
+  const searchShadowVariant = {
+    visible: {
+      opacity: 0.3,
+      width: "65dvw",
+      transition: { delay: 0.5, type: "tween" },
+    },
+    hidden: {
+      opacity: 0,
+      width: "100dvw",
+      transition: { delay: 0.5, type: "tween" },
+    },
+    leave: {
+      opacity: 0,
+      width: "100dvw",
+      transition: { delay: 0.5, type: "tween" },
+    },
+  };
+
+  const searchInputVariant = {
+    visible: { x: 0, transition: { delay: 0.4, type: "tween" } },
+    hidden: { x: "100dvw", transition: { delay: 0.4, type: "tween" } },
+    leave: { x: "100dvw", transition: { delay: 0.5, type: "tween" } },
+  };
+
+  const handleSearchNav = (id: string) => {
+    navigate(`/giftpage/${id}`);
+  };
+
+  const onChangeLang = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const lang_code = e.target.value;
+    i18n.changeLanguage(lang_code);
+    console.log(i18n.language);
+  };
+
+  return loading ? (
+    <div className="isLoading">
+      <div className="loader-home"></div>
+    </div>
+  ) : (
+    <motion.div
+      className="home-page"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 100 }}
+      exit={{ opacity: 0 }}
+      transition={{ delay: 0.2, duration: 0.5, type: "tween" }}
+    >
+      {" "}
+      <AnimatePresence>
+        {searchModal && (
+          <div className="search-modal">
+            <motion.div
+              className="search-modal-shadow"
+              onClick={() => setSearchModal(!searchModal)}
+              initial="hidden"
+              animate="visible"
+              exit="leave"
+              variants={searchShadowVariant}
+            >
+              .
+            </motion.div>
+            <motion.div
+              className="search-modal-input"
+              initial="hidden"
+              animate="visible"
+              exit="leave"
+              variants={searchInputVariant}
+            >
+              <div className="search-modal-input-close">
+                <button onClick={() => setSearchModal(!searchModal)}>
+                  <img src={close} alt="close" />
+                </button>
+              </div>
+              <div className="search-modal-input-search">
+                <form>
+                  <div className="search">
+                    <input
+                      type="text"
+                      className="searchTerm"
+                      placeholder={t("search") + "..."}
+                      onChange={(e: any) => setSearchString(e.target.value)}
+                    />
+                  </div>
+                </form>
+              </div>
+              <div className="search-res-list">
+                {gifts?.data?.gifts
+                  .sort((a: any, b: any) => b.gift_star - a.gift_star)
+                  .slice(0, 4)
+                  ?.filter((gift: any) =>
+                    startsWith(searchString)(gift.gift_name)
+                  )
+                  .map((gift: any, index: number) => (
+                    <div
+                      className="search-modal-input-res"
+                      key={index}
+                      onClick={() => handleSearchNav(gift._id)}
+                    >
+                      <div className="search-modal-input-res-image">
+                        <img
+                          src={
+                            "https://merita.onrender.com" +
+                            gift.gift_image.substring(6)
+                          }
+                          alt="image"
+                          crossOrigin="anonymous"
+                        />
+                      </div>
+                      <div className="search-modal-input-info">
+                        <div className="search-modal-input-info-gift-name">
+                          {gift.gift_name}
+                        </div>
+                        <div className="search-modal-input-info-gift-price">
+                          {gift.gift_price}birr
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+      <div className="home-page-side">
+        <div className="home-page-side-info">
+          <p onClick={() => navigate("/gift")}>{t("homeTxtGift")}</p>
+          <p onClick={() => navigate("/testimonial")}>
+            {t("homeTxtTestimonials")}
+          </p>
+        </div>
+        <div className="home-page-side-social">
+          <img src={telegram} alt="telegram" />
+          <img src={facebook} alt="facebook" />
+          <img src={instagram} alt="instagram" className="instagram" />
+        </div>
+      </div>
+      <div className="home-page-home">
+        <div className="home-page-home-nav">
+          <img
+            src={t("logo") === "eng" ? logo : amhlogo}
+            alt="logo"
+            onClick={() => navigate("/home")}
+          />
+          <div className="nav-center">
+            <p onClick={() => navigate("/account/page/1")}>
+              {t("homeTxtSignup")}
+            </p>
+            <p onClick={() => navigate("/account/login")}>
+              {t("homeTxtSignin")}
+            </p>
+            <p onClick={() => navigate("/blogs")}>{t("homeTxtBlog")}</p>
+          </div>
+          <div className="nav-right">
+            <img
+              src={search}
+              alt="search"
+              onClick={() => setSearchModal(!searchModal)}
+            />
+            <div className="contact" onClick={() => navigate("/about")}>
+              {t("homeTxtAbout")}
+            </div>
+            <div className="language">
+              <select value={i18n.language} onChange={onChangeLang}>
+                <option value="eng">English</option>
+                <option value="amh">አማርኛ</option>
+              </select>
+              <MdOutlineLanguage className="lang-icon" />
+            </div>
+          </div>
+        </div>
+        <div className="home-page-home-info">
+          <h1>{t("homeIntro")}</h1>
+          <p>{t("homeWelcome")}</p>
+          <button onClick={() => navigate("/gift")}>{t("homeTxtShop")}</button>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+export default HomePage;

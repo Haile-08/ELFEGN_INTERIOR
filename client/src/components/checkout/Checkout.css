@@ -1,0 +1,201 @@
+.checkout {
+    width: 100dvw;
+    height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.checkout .checkout-info {
+    width: 40dvw;
+    height: 95dvh;
+    padding-top: 5dvh;
+    padding-left: 10dvw;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    font-family: 'Lato', sans-serif;
+}
+.checkout .checkout-info .back{
+    width: 30dvw;
+    height: 7dvh;
+}
+.checkout .checkout-info .back img{
+    width: 2dvw;
+}
+.checkout .checkout-info img {
+    width: 7dvw;
+    margin-bottom: 5dvh;
+    cursor: pointer;
+}
+.checkout .checkout-input {
+    width: 50dvw;
+    height: 90dvh;
+    display: flex;
+    padding-left: 10dvw;
+    padding-top: 10dvh;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    font-family: 'Lato', sans-serif;
+    background-color: rgb(255, 255, 255);
+}
+
+.checkout .checkout-input p {
+    font-size: 30px;
+    opacity: 30%;
+}
+
+.checkout .checkout-input input {
+    outline: none;
+    border: none;
+    width: 30dvw;
+    height: 7dvh;
+    padding-left: 20px;
+    margin: 20px 0px;
+    background-color: #f1f2f6;
+}
+
+.checkout .checkout-input  button {
+    outline: none;
+    border: none;
+    width: 31dvw;
+    height: 7dvh;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #c44569;
+}
+
+.checkout .checkout-info .checkout-info-price .pay{
+    font-size: 20px;
+    opacity: 40%;
+    margin: 0;
+}
+
+.checkout .checkout-info .checkout-info-price .price{
+    font-size: 30px;
+}
+
+.checkout .checkout-info .checkout-info-gift {
+    display: flex;
+    width: 35dvw;
+    padding-right: 100px;
+    justify-content: space-between;
+}
+
+.checkout .checkout-info .checkout-info-gift .price{
+    margin-left: 20dvw;
+}
+
+.checkout .checkout-info .checkout-info-gift .name{
+    margin-left: 10px;
+}
+.checkout .checkout-info .checkout-info-gift img{
+    width: 5dvw;
+}
+
+.payment-loading {
+    width: 100dvw;
+    height: 100dvh;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f1f2f6b4;
+}
+/* HTML: <div class="loader"></div> */
+.checkout .payment-loading .payment-loader {
+    width: 50px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 8px solid #c44569;
+    animation:
+      l20-1 0.8s infinite linear alternate,
+      l20-2 1.6s infinite linear;
+  }
+  @keyframes l20-1{
+     0%    {clip-path: polygon(50% 50%,0       0,  50%   0%,  50%    0%, 50%    0%, 50%    0%, 50%    0% )}
+     12.5% {clip-path: polygon(50% 50%,0       0,  50%   0%,  100%   0%, 100%   0%, 100%   0%, 100%   0% )}
+     25%   {clip-path: polygon(50% 50%,0       0,  50%   0%,  100%   0%, 100% 100%, 100% 100%, 100% 100% )}
+     50%   {clip-path: polygon(50% 50%,0       0,  50%   0%,  100%   0%, 100% 100%, 50%  100%, 0%   100% )}
+     62.5% {clip-path: polygon(50% 50%,100%    0, 100%   0%,  100%   0%, 100% 100%, 50%  100%, 0%   100% )}
+     75%   {clip-path: polygon(50% 50%,100% 100%, 100% 100%,  100% 100%, 100% 100%, 50%  100%, 0%   100% )}
+     100%  {clip-path: polygon(50% 50%,50%  100%,  50% 100%,   50% 100%,  50% 100%, 50%  100%, 0%   100% )}
+  }
+  @keyframes l20-2{ 
+    0%    {transform:scaleY(1)  rotate(0deg)}
+    49.99%{transform:scaleY(1)  rotate(135deg)}
+    50%   {transform:scaleY(-1) rotate(0deg)}
+    100%  {transform:scaleY(-1) rotate(-135deg)}
+}
+@media screen and (max-width: 600px) {
+    .checkout {
+        width: 100dvw;
+        height: 100dvh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .checkout .checkout-info {
+        width: 80dvw;
+        height: 30dvh;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        flex-direction: column;
+        font-family: 'Lato', sans-serif;
+    }
+    .checkout .checkout-info .checkout-info-gift {
+        display: none;
+    }
+    .checkout .checkout-input {
+        width: 70dvw;
+        height: 60dvh;
+        display: flex;
+        padding-left: 10dvw;
+        padding-top: 3dvh;
+        align-items: flex-start;
+        justify-content: flex-start;
+        flex-direction: column;
+        font-family: 'Lato', sans-serif;
+        background-color: rgb(255, 255, 255);
+    }
+    .checkout .checkout-info .back{
+        width: 70dvw;
+        height: 8dvh;
+    }
+    .checkout .checkout-info .back img{
+        width: 7dvw;
+    }
+    .checkout .checkout-info img {
+        width: 10dvw;
+        margin-bottom: 2dvh;
+        cursor: pointer;
+    }
+    
+.checkout .checkout-input input {
+    outline: none;
+    border: none;
+    width: 50dvw;
+    height: 7dvh;
+    padding-left: 20px;
+    margin: 5px 0px;
+    background-color: #f1f2f6;
+}
+
+.checkout .checkout-input  button {
+    outline: none;
+    border: none;
+    width: 53dvw;
+    height: 7dvh;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #c44569;
+}
+}

@@ -1,0 +1,92 @@
+.payment-success {
+    width: 40dvw;
+    height: 70dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.payment-success .payment-success-check {
+    width: 12dvw;
+    height: 12dvw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #2ed57469;
+}
+
+.payment-success .payment-success-check img{
+    width: 7dvw;
+}
+.payment-success .payment-success-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.payment-success .payment-success-text h3 {
+    font-size: 30px;
+    font-family: 'Lato', sans-serif;
+}
+
+.payment-success .payment-success-text p{
+    font-size: 18px;
+    font-family: 'Lato', sans-serif;
+}
+
+.payment-success button{
+    width: 13dvw;
+    height: 5dvh;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 30px;
+    font-size: 21px;
+    background-color: #2ed573;
+    color: #fff;
+    font-family: 'Lato', sans-serif;
+}
+
+@media screen and (max-width: 600px) {
+    .payment-success .payment-success-check {
+        width: 40dvw;
+        height: 40dvw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background-color: #2ed57469;
+    }
+    .payment-success .payment-success-check img{
+        width: 27dvw;
+    }
+    .payment-success .payment-success-text h3 {
+        width: 80dvw;
+        font-size: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Lato', sans-serif;
+    }
+    .payment-success .payment-success-text p{
+        width: 70dvw;
+        font-size: 18px;
+        font-family: 'Lato', sans-serif;
+    }
+    .payment-success button{
+        width: 50dvw;
+        height: 8dvh;
+        outline: none;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 30px;
+        font-size: 21px;
+        background-color: #2ed573;
+        color: #fff;
+        font-family: 'Lato', sans-serif;
+    }
+}

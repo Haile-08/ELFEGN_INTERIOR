@@ -1,0 +1,395 @@
+.gift-page {
+    width: 100dvw;
+    height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #ffffff;
+}
+
+.loading-modal{
+    position: absolute;
+    width: 100dvw;
+    height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    background-color: #ffffff5d;
+}
+
+.gift-page .payment-loading {
+    width: 100dvw;
+    height: 100dvh;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f1f2f679;
+}
+
+.gift-page-back-arrow {
+    width: 80dvw;
+    height: 10dvh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+    background-color: #ffffff;
+}
+
+.gift-page-back-arrow .social-share-links {
+    width: 10dvw;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+} 
+
+
+.gift-all-loader {
+    width: 100dvw;
+    height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gift-content {
+    width: 80dvw;
+    height: 50dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+}
+
+.order-to-login {
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 10px;
+    color: #ffffff;
+    background-color: #c44569;
+}
+
+.gift-content .gift-image img{
+    width: 25dvw;
+    border-radius: 10px;
+    background-color: #f1f2f6;
+}
+
+.gift-page .gift-page-back-arrow img {
+    width: 2dvw;
+    cursor: pointer;
+}
+
+
+.gift-content .gift-info {
+    height: 44dvh;
+    width: 60dvw;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    padding-left: 5dvw;
+    padding-top: 5dvh;
+    font-family: 'Lato', sans-serif;
+    background-color: #ffffff;
+}
+
+.gift-content .gift-info .gift-name {
+    font-size: 45px;
+}
+
+.gift-content .gift-info .gift-star {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gift-content .gift-info .gift-star img{
+    width: 1.5dvw;
+}
+
+.gift-content .gift-info .gift-star p{
+    margin-right: 20px;
+    font-size: 25px;
+}
+
+.gift-content .gift-info .gift-price {
+    font-size: 25px;
+}
+
+.gift-content .gift-info .gift-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.gift-content .gift-info .gift-btn button {
+    width: 6dvw;
+    outline: none;
+    border: none;
+    margin: 20px 5px;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #c44569;
+    justify-content: space-evenly;
+}
+
+.gift-content .gift-info .gift-btn button img {
+    width: 40px;
+} 
+
+.gift-content .gift-info .gift-decription {
+    width: 30dvw;
+    height: 10dvh;
+    padding: 5px;
+    text-wrap: wrap;
+    word-break: break-all;
+    font-size: 20px;
+    background-color: #ffffff;
+}
+
+.gift-page .gift-suggestion {
+    width: 80dvw;
+    height: 40dvh;
+    font-family: 'Lato', sans-serif;
+    background-color: #ffffff;
+}
+
+.gift-page .gift-suggestion .gift-suggestion-title{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 5dvw;
+    font-size: 25px;
+}
+
+.gift-page .gift-suggestion .gift-suggestion-list {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.gift-page .gift-suggestion .gift-suggestion-list .gift-suggestion-items {
+    width: 20dvw;
+    height: 28dvh;
+    display: flex;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #f1f2f6;
+}
+
+.gift-page .gift-suggestion .gift-suggestion-list .gift-suggestion-items .gift-suggestion-item-image img{
+    width: 10dvw;
+}
+
+.chat-modal {
+    width: 100dvw;
+    height: 100dvh;
+    position: fixed;
+    z-index: 10;
+}
+
+.chat-modal-shadow {
+    opacity: 30%;
+    width: 65dvw;
+    height: 100dvh;
+    position: absolute;
+    background-color: #303952;
+    display: flex;
+    flex-direction: row;
+}
+.chat-modal-input {
+    width: 35dvw;
+    height: 100dvh;
+    margin-left: 65dvw;
+    background-color: #ffffff;
+}
+
+.chat-modal-input-close {
+    display: flex;
+    align-items: center;
+    height: 10dvh;
+    width: 35dvw;
+}
+
+
+.chat-modal-input-close button{
+    font-size: 1dvw;
+    outline: none;
+    border: none;
+    color: #303952;
+    background-color: transparent;
+    cursor: pointer;
+    margin: 0 0.6dvw;
+    font-family: 'Lato', sans-serif;   
+}
+
+.chat-modal-input-close button img{
+    width: 20px;
+}
+
+
+.chat-modal .chat-modal-input .chat{
+    height: 90dvh;
+}
+
+.already_reviewed {
+    width: 12dvw;
+    padding: 10px;
+    margin: 0;
+    border-radius: 5px;
+    color: #000000;
+    background-color: #ff475660;
+}
+
+@media screen and (max-width: 600px) {
+    .gift-content .gift-image img{
+        width: 35dvw;
+        border-radius: 10px;
+        background-color: #f1f2f6;
+    }
+    .gift-content .gift-info .gift-name {
+        font-size: 35px;
+    }
+    .gift-content .gift-info .gift-star {
+        height: 5dvh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .gift-content .gift-info .gift-star p{
+        font-size: 25px;
+    }
+    .gift-content .gift-info  p{
+        padding: 0;
+        margin: 0;
+        font-size: 15px;
+    }
+    .gift-content .gift-info .gift-star img{
+        width: 5dvw;
+    }
+    .gift-content .gift-info .gift-price {
+        font-size: 20px;
+    }
+    .gift-content .gift-info .gift-btn {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+    .gift-content .gift-info .gift-btn button {
+        width: 16dvw;
+        outline: none;
+        border: none;
+        margin: 10px 5px;
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        border-radius: 5px;
+        background-color: #c44569;
+        justify-content: space-evenly;
+    }
+    .gift-content .gift-info .gift-btn button img {
+        width: 28px;
+    }
+    .already_reviewed {
+        width: 35dvw;
+        padding: 5px;
+        margin: 0;
+        border-radius: 5px;
+        color: #000000;
+        background-color: #ff475660;
+    }
+    .gift-content .gift-info .gift-decription {
+        width: 35dvw;
+        height: 10dvh;
+        padding: 5px;
+        text-wrap: wrap;
+        word-break: break-all;
+        font-size: 15px;
+        background-color: #ffffff;
+    }
+    .gift-content .gift-info {
+        height: 30dvh;
+        width: 60dvw;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        flex-direction: column;
+        padding-left: 5dvw;
+        padding-top: 5dvh;
+        font-family: 'Lato', sans-serif;
+        background-color: #ffffff;
+    }
+    .gift-page .gift-page-back-arrow img {
+        width: 12dvw;
+        cursor: pointer;
+    }
+    .gift-content {
+        width: 80dvw;
+        height: 30dvh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #ffffff;
+    }
+    .gift-page .gift-suggestion {
+        width: 80dvw;
+        height: 30dvh;
+        font-family: 'Lato', sans-serif;
+        background-color: #ffffff;
+    }
+    .gift-page .gift-suggestion .gift-suggestion-list .gift-suggestion-items {
+        width: 20dvw;
+        height: 15dvh;
+        display: flex;
+        border-radius: 5px;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        background-color: #f1f2f6;
+    }
+    .chat-modal-input {
+        width: 75dvw;
+        height: 100dvh;
+        margin-left: 25dvw;
+        background-color: #ffffff;
+    }
+    .gift-page-back-arrow .social-share-links {
+        width: 30dvw;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+    .gift-content .gift-info .gift-name {
+        font-size: 30px;
+    }
+    .gift-content .gift-info .gift-star {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .gift-content .gift-info .gift-star p{
+        font-size: 20px;
+    }
+    .gift-content .gift-info .gift-star img{
+        width: 3dvw;
+    }
+    .already_reviewed {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40dvw;
+        padding: 40px;
+        border-radius: 5px;
+        color: #000000;
+        background-color: #ff475660;
+    }      
+}

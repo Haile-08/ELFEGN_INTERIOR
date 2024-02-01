@@ -1,0 +1,129 @@
+.sigup-user {
+    width: 100dvw;
+    height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sigup-user .signup-input {
+    width: 65dvw;
+    height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+}
+
+.sigup-user .signup-side-bar {
+    width: 45dvw;
+    height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: 'Lato', sans-serif;
+    color: #ffffff;
+    background-color: #cf6a87;
+}
+
+.sigup-user .signup-side-bar img {
+    width: 25dvw;
+    cursor: pointer;
+}
+.sigup-user .signup-side-bar h1 {
+    font-size: 2dvw;
+}
+
+.sigup-user .signup-side-bar p{
+    padding: 0px 5dvw;
+}
+
+.sigup-user .signup-side-bar .p-info{
+    margin-bottom: 8dvh;
+}
+
+.sigup-user .signup-side-bar .auth {
+    width: 20dvw;
+    height: 5dvh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 10px;
+    background-color: #fff;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.sigup-user .signup-side-bar .auth p {
+    padding: 0px;
+    font-size: 20px;
+    color: #2f3542;
+}
+
+.sigup-user .signup-side-bar .auth img {
+    margin-left: 5dvw;
+    margin-right: 2dvw;
+    width: 2dvw;
+}
+
+.sigup-user .signup-side-bar .auth-signin {
+    width: 20dvw;
+    height: 5dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    border: 1px solid #ffffff;
+    border-radius: 10px;
+}
+
+.sigup-user .signup-side-bar .auth-signin p {
+    padding: 0;
+    margin: 0;
+    color: #fff;
+}
+.mobile-auth {
+    display: none;
+}
+@media screen and (max-width: 600px) {
+    .sigup-user .signup-side-bar {
+        display: none;
+    }
+    .sigup-user .signup-input {
+        width: 100dvw;
+        height: 100dvh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #ffffff;
+    }
+     .mobile-auth {
+        width: 70dvw;
+        height: 7dvh;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        margin: 10px;
+        background-color: #f1f2f6;
+        cursor: pointer;
+        border-radius: 10px;
+        font-family: 'Lato', sans-serif;
+    }
+    
+     .mobile-auth p {
+        padding: 0px;
+        font-size: 20px;
+        color: #2f3542;
+    }
+    
+    .mobile-auth img {
+        margin-left: 20dvw;
+        margin-right: 2dvw;
+        width: 5dvw;
+    }
+    
+}

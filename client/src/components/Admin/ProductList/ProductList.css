@@ -1,0 +1,273 @@
+.product-list {
+    width: 100dvw;
+    height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    scroll-behavior: none;
+}
+
+.product-list-title {
+    width: 90dvw;
+    height: 8dvh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.product-list-title p{
+    font-size: 3dvh;
+}
+
+.gift-list {
+    width: 90dvw;
+    height: 85dvh;
+}
+
+.product-loading {
+    width: 90dvw;
+    height: 85dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* HTML: <div class="loader"></div> */
+.product-loading .admin-loader {
+    width: 50px;
+    padding: 8px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: #c44569;
+    --_m: 
+      conic-gradient(#0000 10%,#000),
+      linear-gradient(#000 0 0) content-box;
+    -webkit-mask: var(--_m);
+            mask: var(--_m);
+    -webkit-mask-composite: source-out;
+            mask-composite: subtract;
+    animation: l3 1s infinite linear;
+  }
+  @keyframes l3 {to{transform: rotate(1turn)}}
+
+
+.gift-list .gift-list-scroll {
+    width: 83dvw;
+    height: 85dvh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+.gift-list .gift-list-scroll .gift-item{
+    width: 78dvw;
+    height: 20dvh;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    margin: 5px 0px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background-color: #ffffff;
+    cursor: pointer;
+}
+
+.gift-list .gift-list-scroll .gift-item img{
+    width: 6dvw;
+    margin-left: 40px;
+}
+
+.gift-list .gift-list-scroll .gift-item .gift-item-info {
+    height: 20dvh;
+    width: 20dvw;
+    margin-left: 40px;
+    font-size: 22px;
+    font-family: 'Lato', sans-serif;
+}
+
+.gift-list .gift-list-scroll .gift-item .gift-item-data{
+    height: 20dvh;
+    width: 30dvw;
+    font-size: 22px;
+    font-family: 'Lato', sans-serif;
+}
+
+.gift-list .gift-list-scroll .gift-item .gift-item-delete-btn{
+    height: 20dvh;
+    width: 20dvw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-family: 'Lato', sans-serif;
+}
+.gift-list .gift-list-scroll .gift-item .gift-item-delete-btn button{
+    outline: none;
+    border: none;
+    width: 10dvw;
+    height: 5dvh;
+    color: #fff;
+    cursor: pointer;
+    background-color: #cf6a87;
+    font-family: 'Lato', sans-serif;
+}
+
+/* Footer nav*/
+
+.patginate-product {
+    width: 90dvw;
+    height: 5dvh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.nav-btn {
+    width: 55dvw;
+    height: 10dvh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.nav-btn button{
+    width: 8dvw;
+    height: 5dvh;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    border-radius: 2px;
+    background-color: #c44569;
+}
+
+.nav-btn button:disabled{
+    width: 8dvw;
+    height: 5dvh;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    color: #000000;
+    border: 1px solid #000;
+    border-radius: 2px;
+    background-color:transparent;
+}
+
+.nav-btn p{
+    height: 5dvh;
+    padding: 0px 10px;
+    border: 1px solid #000;
+    margin: 0px 10px;
+    width: 50px;
+    height: 5dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    font-family: 'Lato', sans-serif;
+}
+
+@media screen and (max-width: 600px) {
+    .nav-btn {
+        width: 80dvw;
+        height: 10dvh;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }
+    
+    .nav-btn button{
+        width: 20dvw;
+        height: 5dvh;
+        outline: none;
+        border: none;
+        cursor: pointer;
+        color: #fff;
+        border-radius: 2px;
+        background-color: #c44569;
+    }
+    
+    .nav-btn button:disabled{
+        width: 20dvw;
+        height: 5dvh;
+        outline: none;
+        border: none;
+        cursor: pointer;
+        color: #000000;
+        border: 1px solid #000;
+        border-radius: 2px;
+        background-color:transparent;
+    }
+    
+    .nav-btn p{
+        height: 5dvh;
+        padding: 0px 10px;
+        border: 1px solid #000;
+        margin: 0px 10px;
+        width: 4dvw;
+        height: 5dvh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 30px;
+        font-family: 'Lato', sans-serif;
+    }
+
+.gift-list .gift-list-scroll .gift-item img{
+    width: 13dvw;
+    margin-left: 20px;
+}
+.gift-list .gift-list-scroll .gift-item .gift-item-info {
+    height: 20dvh;
+    width: 25dvw;
+    margin-left: 10px;
+    font-size: 10px;
+    font-family: 'Lato', sans-serif;
+}
+.gift-list .gift-list-scroll .gift-item .gift-item-data{
+    height: 20dvh;
+    width: 20dvw;
+    font-size: 10px;
+    font-family: 'Lato', sans-serif;
+}
+.gift-list .gift-list-scroll {
+    width: 95dvw;
+    height: 75dvh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+.gift-list .gift-list-scroll .gift-item{
+    width: 90dvw;
+    height: 20dvh;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background-color: #f1f2f6;
+}
+.gift-list .gift-list-scroll .gift-item .gift-item-delete-btn{
+    height: 20dvh;
+    width: 30dvw;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    font-size: 22px;
+    font-family: 'Lato', sans-serif;
+}
+.gift-list .gift-list-scroll .gift-item .gift-item-delete-btn button{
+    outline: none;
+    border: none;
+    width: 20dvw;
+    height: 5dvh;
+    color: #fff;
+    cursor: pointer;
+    background-color: #cf6a87;
+    font-family: 'Lato', sans-serif;
+}
+}
