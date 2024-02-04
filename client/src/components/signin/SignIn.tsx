@@ -49,23 +49,13 @@ function SignIn() {
 
   const { mutate } = useMutation(loginUser, {
     onSuccess: (data) => {
-      if (data.user.is_a_buyer) {
         dispatch(
           setLogin({
             user: data.user,
-            buyerToken: data.token,
+            userToken: data.token,
           })
         );
-        navigate("/buyerpage/shop");
-      } else {
-        dispatch(
-          setLogin({
-            user: data.user,
-            sellerToken: data.token,
-          })
-        );
-        navigate("/sellerpage/profile");
-      }
+        navigate("/buyerpage/shop?tokenid=null");
     },
     onError: () => {
       setLoginError(true);
@@ -81,7 +71,7 @@ function SignIn() {
   };
 
   const handleGoogleRedirect = () => {
-    window.open("https://merita.onrender.com/v1/auth/google", "_self");
+    window.open("http://localhost:5000/v1/auth/google", "_self");
   };
   return (
     <div className="sigup-user">

@@ -45,7 +45,6 @@ import {
   SellerProfile,
   SellerWithdraw,
   Signup,
-  Type,
   WithdrawFailure,
   WithdrawLoading,
   WithdrawSuccess,
@@ -135,10 +134,6 @@ function Routes() {
         {
           path: "/account/page/password/reset/:token/:id",
           element: <Reset />,
-        },
-        {
-          path: "/account/page/type/:id/:email",
-          element: <Type />,
         },
       ],
     },

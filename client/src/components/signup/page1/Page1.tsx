@@ -1,12 +1,13 @@
-import { useForm, SubmitHandler } from "react-hook-form";
-import { valibotResolver } from "@hookform/resolvers/valibot";
-import { object, string, minLength, email } from "valibot";
-import error from "../../../assets/error.png";
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+
 import { MdNavigateNext } from "react-icons/md";
 import { CiUser } from "react-icons/ci";
 import { AiOutlineMail } from "react-icons/ai";
 import { motion } from "framer-motion";
 import google from "../../../assets/google-login.png";
+import error from "../../../assets/error.png";
 
 import "../Page.css";
 import { useNavigate } from "react-router-dom";
@@ -14,39 +15,33 @@ import { useDispatch } from "react-redux";
 import { setPage1 } from "../../../actions/signupSlice";
 import { useTranslation } from "react-i18next";
 
-interface IFormInputs {
-  form_first_name: string;
-  form_last_name: string;
-  form_email: string;
-}
 
-const schema = object({
-  form_first_name: string("Your first name must be a string.", [
-    minLength(1, "Please enter your first name."),
-  ]),
-  form_last_name: string("Your last name must be a string.", [
-    minLength(1, "Please enter your first name."),
-  ]),
-  form_email: string("Your email must be a string.", [
-    minLength(1, "Please enter your email."),
-    email("The email address is badly formatted."),
-  ]),
-});
+const schema = z.object({
+  form_first_name: z.string({
+  required_error: "First Name is required",
+  invalid_type_error: "First Name must be a string"}).min(3, {message: 'First Name must be at least 3 characters'}),
+
+  form_last_name: z.string({
+    required_error: "Last Name is required",
+    invalid_type_error: "Last Name must be a string"}).min(3, {message: 'Last Name must be at least 3 characters'}),
+  form_email: z.string({
+    required_error: "Email is required",
+    invalid_type_error: "Email must be a string"}).min(1, {message: 'Email is required'}).email('Invalid email address'),
+})
+
+//extract the inferred type from schema
+type ValidationSchemaType = z.infer<typeof schema>
 
 function Page1() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { t } = useTranslation();
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<IFormInputs>({
-    resolver: valibotResolver(schema),
+  const { register, handleSubmit, formState: { errors } } = useForm<ValidationSchemaType>({
+    resolver: zodResolver(schema),
   });
 
-  const onSubmit: SubmitHandler<IFormInputs> = (data) => {
+  const onSubmit:  SubmitHandler<ValidationSchemaType> = (data:any) => {
     const { form_first_name, form_last_name, form_email } = data;
     console.log(data);
     dispatch(
@@ -59,7 +54,7 @@ function Page1() {
     navigate("/account/page/2");
   };
   const handleGoogleRedirect = () => {
-    window.open("https://merita.onrender.com/v1/auth/google", "_self");
+    window.open("http://localhost:5000/v1/auth/google", "_self");
   };
 
   return (

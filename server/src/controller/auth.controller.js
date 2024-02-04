@@ -12,13 +12,9 @@ const handleSignUp = async (req, res) => {
     const {
       firstName,
       lastName,
-      country,
-      city,
-      street,
       email,
+      phoneNumber,
       password,
-      date,
-      is_a_buyer,
     } = req.body;
     const existingUser = await User.findOne({ email });
     if (existingUser) {
@@ -26,36 +22,14 @@ const handleSignUp = async (req, res) => {
     }
     const salt = await bcrypt.genSalt();
     const passwordHash = await bcrypt.hash(password, salt);
-    let user;
-    if (is_a_buyer) {
-      user = await User.create({
-        firstName,
-        lastName,
-        country,
-        city,
-        street,
-        email,
-        password: passwordHash,
-        date,
-        is_a_buyer,
-      });
-    } else {
-      user = await User.create({
-        firstName,
-        lastName,
-        country,
-        city,
-        street,
-        email,
-        password: passwordHash,
-        date,
-        is_a_buyer,
-      });
-      await Balance.create({
-        user_id: user._id,
-        balance: 0,
-      });
-    }
+    const user = await User.create({
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      password: passwordHash,
+    });
+    
     sendEmail(
       user.email,
       "Gift shop",
@@ -91,28 +65,14 @@ const handleLogin = async (req, res) => {
       return res.json({ message: "Incorrect password or email" });
     }
 
-    const buyerToken = jwt.sign({ id: user._id }, process.env.BUYER_JWT_SECRET);
-    const sellerToken = jwt.sign(
-      { id: user._id },
-      process.env.SELLER_JWT_SECRET
-    );
-
-    if (user.is_a_buyer) {
-      res.status(201).json({
-        message: "User logged in successfully",
-        success: true,
-        user,
-        token: buyerToken,
-      });
-    } else {
-      res.status(201).json({
-        message: "User logged in successfully",
-        success: true,
-        user,
-        token: sellerToken,
-      });
-    }
+    const userToken = jwt.sign({ id: user._id }, process.env.USER_JWT_SECRET);
     
+    res.status(201).json({
+        message: "User logged in successfully",
+        success: true,
+        user,
+        token: userToken,
+    });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -174,20 +134,6 @@ const resetPassword = async (req, res) => {
   res.status(201).json({ message: "reset email sent", success: true });
 };
 
-const handle0authRegister = async (req, res) => {
-  console.log("info");
-  console.log(req.user);
-  const { is_a_buyer } = req.body;
-  console.log(`handle0authRegister ${is_a_buyer}`);
-  User.findByIdAndUpdate(req.user._id, { is_a_buyer }, { new: true })
-    .then((updatedItem) => {
-      console.log("Updated item:", updatedItem);
-    })
-    .catch((error) => {
-      console.error("Error updating item:", error);
-    });
-};
-
 const handleLogout = async (req, res) => {
   req.logout(function (err) {
     if (err) {
@@ -216,6 +162,5 @@ module.exports = {
   requestPasswordReset,
   resetPassword,
   handleLogout,
-  handle0authRegister,
   handleGetUserInfo,
 };

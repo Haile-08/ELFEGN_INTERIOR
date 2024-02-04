@@ -1,13 +1,16 @@
 import "./BuyerShop.css";
 import { useQuery } from "react-query";
 import { motion } from "framer-motion";
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { useNavigate, useOutletContext, useSearchParams } from "react-router-dom";
 import { getGifts } from "../../../hooks/giftHook";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useDispatch } from "react-redux";
+import { setLogin } from "../../../actions/authSlice";
 
 function BuyerShop() {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
   const [page, setPage] = useState(0);
   const { isLoading, data, isPreviousData, refetch } = useQuery({
     queryKey: ["gifts", page],
@@ -16,6 +19,7 @@ function BuyerShop() {
   });
   const { checkPrice, checkDate, checkStar, checkCategory }: any =
     useOutletContext();
+    const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   interface GiftItem {
     _id: string;
@@ -25,6 +29,13 @@ function BuyerShop() {
   }
 
   useEffect(() => {
+    const token = searchParams.get('tokenid');
+    if(token != "null"){
+      dispatch(setLogin({
+        userToken: token,
+      }))
+    }
+    console.log("token admin",token)
     refetch();
   }, []);
   return (

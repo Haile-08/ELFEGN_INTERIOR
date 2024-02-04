@@ -10,48 +10,18 @@ const userSchema = new Schema({
     type: String,
     min: 1,
   },
-  country: {
-    type: String,
-    min: 1,
-  },
-  city: {
-    type: String,
-    min: 1,
-  },
-  street: {
-    type: String,
-    min: 1,
-  },
   email: {
     type: String,
     unique: true,
     required: true,
   },
-  password: {
-    type: String,
-    min: 8,
-  },
-  date: {
-    type: String,
-    min: 1,
-  },
-  bank_name: {
-    type: String,
-    min: 1,
-  },
-  account_name: {
-    type: String,
-    min: 1,
-  },
-  account_number: {
+  phoneNumber: {
     type: Number,
     min: 1,
   },
-  is_a_buyer: {
-    type: Boolean,
-  },
-  phone_number: {
+  password: {
     type: String,
+    min: 8,
   },
   image: {
     type: String,

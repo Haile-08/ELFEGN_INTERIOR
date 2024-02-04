@@ -35,7 +35,6 @@ export { default as Signin } from "../components/signin/SignIn";
 export { default as Page1 } from "../components/signup/page1/Page1";
 export { default as Page2 } from "../components/signup/page2/Page2";
 export { default as Page3 } from "../components/signup/page3/Page3";
-export { default as Type } from "../components/signup/Type/Type";
 export { default as LandingPage } from "../components/LandingPage/LandingPage";
 export { default as HomePage } from "../components/LandingPage/HomePage/HomePage";
 export { default as HomeGiftPage } from "./LandingPage/HomeGiftPage/HomeGiftPage";

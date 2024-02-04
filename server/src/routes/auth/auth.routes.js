@@ -9,7 +9,6 @@ const {
   requestPasswordReset,
   resetPassword,
   handleLogout,
-  handle0authRegister,
   handleGetUserInfo,
 } = require("../../controller/auth.controller");
 
@@ -28,40 +27,19 @@ router.get(
 router.get(
   "/redirect/google",
   passport.authenticate("google", {
-    failureRedirect: "https://merita.netlify.app/account/login",
+    failureRedirect: "http://localhost:5173/account/login",
   }),
   (req, res) => {
-    console.log("redirect");
-    const buyerToken = jwt.sign(
+    const userToken = jwt.sign(
       { id: req.user._id },
-      process.env.BUYER_JWT_SECRET
+      process.env.USER_JWT_SECRET
     );
-    const sellerToken = jwt.sign(
-      { id: req.user._id },
-      process.env.SELLER_JWT_SECRET
+    console.log(userToken)
+    res.redirect(
+        `http://localhost:5173/buyerpage/shop?tokenid=${userToken}`
     );
-    if (req.user.is_a_buyer == true) {
-      res.redirect(
-        `https://merita.netlify.app/auth/loading/${req.user._id.toString()}/${buyerToken}/true`
-      );
-    }
-    if (req.user.is_a_buyer == false) {
-      res.redirect(
-        `https://merita.netlify.app/auth/loading/${req.user._id.toString()}/${sellerToken}/false`
-      );
-    }
-    if (req.user.is_a_buyer == undefined) {
-      //change url
-      res.redirect(
-        `https://merita.netlify.app/account/page/type/${req.user._id.toString()}/${
-          req.user.email
-        }`
-      );
-    }
   }
 );
-
-router.post("/0authRegister", handle0authRegister);
 router.get("/logout", buyerAuth, handleLogout);
 router.get("/user/:id", handleGetUserInfo);
 

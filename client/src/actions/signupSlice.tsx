@@ -5,7 +5,6 @@ const initialState = {
   lastname: null,
   email: null,
   phone_number: null,
-  password: null,
 };
 
 export const signupSlice = createSlice({
@@ -20,9 +19,7 @@ export const signupSlice = createSlice({
     setPage2: (state, action) => {
       state.phone_number = action.payload.phone_number;
     },
-    setPage3: (state, action) => {
-      state.password = action.payload.password;
-    },
+  
     clearPage1: (state) => {
       state.firstname = null;
       state.lastname = null;
@@ -31,12 +28,9 @@ export const signupSlice = createSlice({
     clearPage2: (state) => {
       state.phone_number = null;
     },
-    clearPage3: (state) => {
-      state.password = null;
-    },
   },
 });
 
-export const { setPage1, setPage2, setPage3, clearPage1, clearPage2, clearPage3 } =
+export const { setPage1, setPage2, clearPage1, clearPage2 } =
   signupSlice.actions;
 export default signupSlice.reducer;

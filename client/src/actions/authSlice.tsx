@@ -3,8 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   user: null,
   adminToken: null,
-  buyerToken: null,
-  sellerToken: null,
+  userToken: null,
   tx_ref: null,
 };
 
@@ -15,8 +14,7 @@ export const authSlice = createSlice({
     setLogin: (state, action) => {
       state.user = action.payload.user;
       state.adminToken = action.payload.adminToken;
-      state.buyerToken = action.payload.buyerToken;
-      state.sellerToken = action.payload.sellerToken;
+      state.userToken = action.payload.userToken;
     },
     setTxRef: (state, action) => {
       state.tx_ref = action.payload.tx_ref;
@@ -27,8 +25,7 @@ export const authSlice = createSlice({
     setLogout: (state) => {
       state.user = null;
       state.adminToken = null;
-      state.buyerToken = null;
-      state.sellerToken = null;
+      state.userToken = null;
     },
   },
 });

@@ -1,6 +1,6 @@
-import { useForm, SubmitHandler } from "react-hook-form";
-import { valibotResolver } from "@hookform/resolvers/valibot";
-import { object, string, minLength, maxLength } from "valibot";
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
 import error from "../../../assets/error.png";
 import { MdNavigateNext } from "react-icons/md";
 import { IoChevronBack } from "react-icons/io5";
@@ -14,31 +14,29 @@ import { useDispatch } from "react-redux";
 import { clearPage2, setPage2 } from "../../../actions/signupSlice";
 import { useTranslation } from "react-i18next";
 
-interface IFormInputs {
-  form_phone_number: string;
-}
 
-const schema = object({
-  form_phone_number: string([
-    minLength(1, "Please enter a phone number."),
-    maxLength(10, "Please enter a phone number."),
-  ]),
-});
+const schema = z.object({
+  form_phone_number: z.string()
+  .refine((value) => /^09[0-9]{8}$/.test(value), {
+    message: 'Invalid Ethiopian phone number. It should start with 09 and be followed by 8 digits.',
+  })
+  .refine((value) => value === value.trim(), {
+    message: 'Phone number should not have leading or trailing spaces.',
+  })
+})
+//extract the inferred type from schema
+type ValidationSchemaType = z.infer<typeof schema>
 
 function Page2() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { t } = useTranslation();
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<IFormInputs>({
-    resolver: valibotResolver(schema),
+  const { register, handleSubmit, formState: { errors } } = useForm<ValidationSchemaType>({
+    resolver: zodResolver(schema),
   });
 
-  const onSubmit: SubmitHandler<IFormInputs> = (data) => {
+  const onSubmit:  SubmitHandler<ValidationSchemaType> = (data:any) => {
     const { form_phone_number } = data;
     console.log(data);
     dispatch(
@@ -46,11 +44,10 @@ function Page2() {
         phone_number: form_phone_number,
       })
     );
-    throw Error("error");
     navigate("/account/page/3");
   };
   const handleGoogleRedirect = () => {
-    window.open("https://merita.onrender.com/v1/auth/google", "_self");
+    window.open("http://localhost:5000/v1/auth/google", "_self");
   };
 
   return (

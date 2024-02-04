@@ -8,7 +8,7 @@ const buyerAuth = (req, res, next) => {
     return res.sendStatus(401); // Unauthorized
   }
 
-  jwt.verify(token, process.env.BUYER_JWT_SECRET, (err) => {
+  jwt.verify(token, process.env.USER_JWT_SECRET, (err) => {
     if (err) {
       return res.sendStatus(403); // Forbidden
     }

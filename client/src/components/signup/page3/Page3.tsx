@@ -1,6 +1,7 @@
-import { useForm, SubmitHandler } from "react-hook-form";
-import { valibotResolver } from "@hookform/resolvers/valibot";
-import { object, string, minLength } from "valibot";
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+
 import error from "../../../assets/error.png";
 import { IoChevronBack } from "react-icons/io5";
 import { RiLockPasswordLine } from "react-icons/ri";
@@ -11,25 +12,21 @@ import google from "../../../assets/google-login.png";
 import "../Page.css";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { clearPage3, setPage3 } from "../../../actions/signupSlice";
+import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
+import { useMutation } from 'react-query';
+import { signupUser } from '../../../hooks/authHook';
 
-interface IFormInputs {
-  form_password: string;
-  form_confirm_password: string;
-}
-
-const schema = object({
-  form_password: string("Your password must be a string.", [
-    minLength(1, "Please enter your password."),
-    minLength(8, "Your password must have 8 characters or more."),
-  ]),
-  form_confirm_password: string("Your password must be a string.", [
-    minLength(1, "Please enter your password."),
-    minLength(8, "Your password must have 8 characters or more."),
-  ]),
+const schema = z.object({
+  form_password: z.string().min(6, { message: 'Password must be at least 6 characters' }),
+  form_confirm_password: z.string().min(6, { message: 'Password must be at least 6 characters' })
+}).refine((data) => data.form_password === data.form_confirm_password, {
+  message: 'Passwords do not match'
 });
+
+
+//extract the inferred type from schema
+type ValidationSchemaType = z.infer<typeof schema>
 
 function Page3() {
   const [isVisible, setVisible] = useState(false);
@@ -37,22 +34,36 @@ function Page3() {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<IFormInputs>({
-    resolver: valibotResolver(schema),
+
+  const firstName = useSelector((state: any) => state.signup.firstname);
+  const lastName = useSelector((state: any) => state.signup.lastname);
+  const emailInput = useSelector((state: any) => state.signup.email);
+  const phoneNumber = useSelector((state: any) => state.signup.phone_number);
+
+  const { register, handleSubmit, formState: { errors } } = useForm<ValidationSchemaType>({
+    resolver: zodResolver(schema),
   });
 
-  const onSubmit: SubmitHandler<IFormInputs> = (data) => {
+  const signup = useMutation(signupUser, {
+    onSuccess: (data: any) => {
+      console.log(data)
+      navigate("/account/login");
+    },
+    onError: () => {
+      alert("there was an error");
+    },
+  })
+
+  const onSubmit:  SubmitHandler<ValidationSchemaType> = (data:any) => {
     const { form_confirm_password } = data;
-    dispatch(
-      setPage3({
-        password: form_confirm_password,
-      })
-    );
-    navigate("/account/page/type/id/signup");
+
+    signup.mutate({
+      firstName,
+      lastName,
+      email: emailInput,
+      phoneNumber,
+      password: form_confirm_password,
+    })
   };
 
   const handleToggle = () => {
@@ -60,7 +71,7 @@ function Page3() {
   };
 
   const handleGoogleRedirect = () => {
-    window.open("https://merita.onrender.com/v1/auth/google", "_self");
+    window.open("http://localhost:5000/v1/auth/google", "_self");
   };
 
   return (
@@ -125,7 +136,6 @@ function Page3() {
       <div className="page-one-button">
         <button
           onClick={() => {
-            dispatch(clearPage3());
             navigate("/account/page/2");
           }}
         >
