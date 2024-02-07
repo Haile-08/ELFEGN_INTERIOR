@@ -1,61 +1,48 @@
 import { useMutation, useQuery } from "react-query";
 import "./BuyerOrder.css";
 import {
-  ApproveDelivery,
-  deleteOrder,
   getOrderPaginate,
+  verifyPayment,
 } from "../../../hooks/orderHook";
 import { useEffect, useState } from "react";
-import cutl from "../../../assets/tl.svg";
-import cutr from "../../../assets/tr.svg";
-import { useDispatch, useSelector } from "react-redux";
-import { setTxRef } from "../../../actions/authSlice";
-import { useNavigate } from "react-router-dom";
+import {  useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 
 function BuyerOrder() {
-  const dispatch = useDispatch();
-  const naviage = useNavigate();
   const { t } = useTranslation();
   const [page, setPage] = useState(0);
+  const [verifyLoading, setVerifyLoading] = useState(false);
   const user = useSelector((state: any) => state.auth.user);
-  const buyerToken = useSelector((state: any) => state.auth.buyerToken);
+  const token = useSelector((state: any) => state.auth.userToken);
   const { isLoading, data, isPreviousData, refetch } = useQuery({
     queryKey: ["order", page],
     // @ts-ignore
     queryFn: () => getOrderPaginate({ page: page, id: user?._id }),
     keepPreviousData: true,
   });
-  const approve = useMutation(ApproveDelivery, {
+  const payment = useMutation(verifyPayment, {
     onSuccess: (data) => {
-      console.log(data);
+      console.log("payement data", data);
+      if (data.paid){
+        setVerifyLoading(false);
+      }
     },
     onError: () => {
       console.log("there was an error");
     },
   });
 
-  const deleteorder = useMutation(deleteOrder, {
-    onSuccess: (data) => {
-      console.log(data);
-    },
-    onError: () => {
-      console.log("there was an error");
-    },
-  });
+  
 
   useEffect(() => {
     refetch();
   }, []);
 
-  const handleApproval = (id: String, userId: String) => {
-    approve.mutate({ data: { id, userId }, token: buyerToken });
-    refetch();
-  };
-  const handleOrderDelete = (id: String) => {
-    deleteorder.mutate({ id, token: buyerToken });
-    refetch();
-  };
+  const handleOrderVerify = (data: any) => {
+    payment.mutate({tx_ref: data});
+    setVerifyLoading(true);
+    refetch()
+  }
   return (
     <div className="buyer-order">
       {isLoading ? (
@@ -65,102 +52,26 @@ function BuyerOrder() {
           <div className="buyer-order-list">
             {data?.orders?.map((order: any) => (
               <div className="buyer-order-item" key={order?._id}>
-                <div className="buyer-order-item-left">
-                  <img src={cutl} alt="edgecut" />
+                <div className="order-space-image">
+                 <img
+                  src={
+                    "http://localhost:5000/" + order?.ProductImage?.substring(6)
+                  }
+                  alt="content-image"
+                  crossOrigin="anonymous"
+                  />
                 </div>
-                <div className="buyer-order-item-center">
-                  <div className="buyer-order-item-center-id">
-                    <div className="buyer-order-item-center-id-id">
-                      <p>{t("buyerOrderId")}:</p>
-                      {order?._id}
-                    </div>
-                    <div className="buyer-order-item-center-id-status">
-                      {order.OrderActive ? (
-                        <p className="active">{t("buyerOrderActive")}</p>
-                      ) : (
-                        <p className="inactive">{t("buyerOrderInActive")}</p>
-                      )}
-                    </div>
-                  </div>
-                  <div className="buyer-order-item-center-body">
-                    <img
-                      src={
-                        "https://merita.onrender.com" +
-                        order.GiftImage.substring(6)
-                      }
-                      alt="image"
-                      crossOrigin="anonymous"
-                    />
-                    <div className="buyer-order-item-center-info">
-                      <p>
-                        {t("buyerOrderItem")}: {order.orderName}
-                      </p>
-                      <p>
-                        {t("buyerOrderPaymentstat")}: {order.paymentStatus}
-                      </p>
-                      <p>
-                        {t("buyerOrderDate")}: {order.OrderDate}
-                      </p>
-                    </div>
-                    <div className="buyer-order-item-center-action">
-                      {order.OrderDelivered ? (
-                        <p>
-                          {t("buyerOrderDeliveryStat")}{" "}
-                          <p className="deliver-comp">
-                            {t("buyerOrderDelivered")}
-                          </p>
-                        </p>
-                      ) : (
-                        <p>
-                          {t("buyerOrderDeliveryStat")}{" "}
-                          <p className="deliver-pend">
-                            {t("buyerOrderPending")}
-                          </p>
-                        </p>
-                      )}
-                      {order.OrderDelivered ? (
-                        <button
-                          onClick={(e: any) => {
-                            e.preventDefault();
-                            handleOrderDelete(order._id);
-                          }}
-                        >
-                          {t("buyerOrderDelete")}
-                        </button>
-                      ) : (
-                        order.OrderActive && (
-                          <button
-                            onClick={(e: any) => {
-                              e.preventDefault();
-                              handleApproval(order._id, order.SellerId);
-                            }}
-                          >
-                            {t("buyerOrderApprove")}
-                          </button>
-                        )
-                      )}
-                      {order.OrderActive ? (
-                        <></>
-                      ) : (
-                        <button
-                          onClick={(e: any) => {
-                            e.preventDefault();
-                            dispatch(
-                              setTxRef({
-                                tx_ref: order.tx_ref,
-                              })
-                            );
-                            naviage("/buyerpage/payment/verify");
-                          }}
-                        >
-                          {t("buyerOrderVerifyPayment")}
-                        </button>
-                      )}
-                    </div>
-                  </div>
+                <div className="order-space">
+                  <p>{order.ProductName}</p>
+                  <p>{order.Amount}{"  "}Birr</p>
+                  <p>{order.PhoneNumber}</p>
+                  <p>{order.KefleKetema}</p>
+                  <p>{order.FriendlyPlace}</p>
                 </div>
-                <div className="buyer-order-item-right">
-                  <img src={cutr} alt="edgecut" />
+                <div className="order-space">
+                  <p>{order.OrderDate}</p>
+                  {order.Delivered? <div className="stat-delivered">Delivered</div>: <div className="stat-pending"> Delivery Pending</div>}
+                  {order.PayemntVerify? <div className="stat-delivered">Payment Verifyied</div>: verifyLoading?  <button className="btn-loading"><div className="buyer-loader-green"></div></button> :<button onClick={()=> handleOrderVerify(order.tx_ref)} className="btn-verify">Verify Payment</button>}
                 </div>
               </div>
             ))}

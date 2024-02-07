@@ -10,33 +10,19 @@ const cookieParser = require("cookie-parser");
 const passport = require("passport");
 const session = require("express-session");
 const multer = require("multer");
-const { createServer } = require("http");
-const { Server } = require("socket.io");
-const sockets = require("./sockets/sockets");
 
-//local imports
+// Local imports
 const api = require("./routes/api.routes");
 
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3500;
 
-// https server
-
-const httpServer = createServer(app);
-const io = new Server(httpServer, {
-  cors: {
-    origin: ["https://merita.netlify.app"],
-    methods: ["GET", "POST"],
-  },
-});
-
-//connect the mongodb
+// Connect to MongoDB
 const connectDB = require("./config/dbCon");
-//allowed origins
 const allowedOrigins = require("./config/allowedOrigins");
 
-//connect to monogodb
+// Connect to MongoDB
 connectDB();
 app.use(cors(allowedOrigins));
 app.use(morgan("common"));
@@ -58,13 +44,11 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-// api versioning
+// API versioning
 app.use("/v1", api);
 
-io.on("connection", sockets);
-
-//connection checker
+// Connection checker
 mongoose.connection.once("open", () => {
-  console.log("connected to MongoDB");
-  httpServer.listen(PORT, () => console.log(`Server run on ${PORT}`));
+  console.log("Connected to MongoDB");
+  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 });

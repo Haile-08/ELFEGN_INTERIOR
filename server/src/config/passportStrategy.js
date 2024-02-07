@@ -1,6 +1,5 @@
 const passport = require("passport");
 const User = require("../models/user.models");
-const Balance = require("../models/balance.models");
 const sendEmail = require("../utils/email/sendEmail");
 const GoogleStrategy = require("passport-google-oidc").Strategy;
 

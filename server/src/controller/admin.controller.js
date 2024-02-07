@@ -1,10 +1,8 @@
 const Admin = require("../models/admin.models");
 const Gift = require("../models/gift.models");
-const Withdraw = require("../models/withdraw.models");
+const Product = require("../models/product.models")
 const Blog = require("../models/blog.models");
 const Order = require("../models/orders.model");
-const Balance = require("../models/balance.models");
-const Product = require("../models/product.models")
 const jwt = require("jsonwebtoken");
 
 /* Admin Auth*/
@@ -137,64 +135,21 @@ const handleAdminGetAllGifts = async (req, res) => {
   }
 };
 
-const handleWithdrawGet = async (req, res) => {
+const handleDashBoardCount = async (req, res) => {
   try {
-    const withdraws = await Withdraw.find();
+    const product = await Product.countDocuments();
+    const pending = await Order.find({ Delivered: false }).countDocuments();
+    const delivered =  await Order.find({ Delivered: true }).countDocuments();
+    const blog = await Blog.countDocuments();
+
     res.status(201).json({
-      message: "Gifts fetched successfully",
+      message: "Count fetched successfully",
       success: true,
-      withdraws,
+      product,
+      pending,
+      delivered,
+      blog,
     });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
-
-const handleWithdrawApproval = async (req, res) => {
-  try {
-    const { approve, id } = req.body;
-
-    if (approve) {
-      await Withdraw.findByIdAndUpdate(id, { Approved: true }, { new: true });
-    } else {
-      const withdraw = await Withdraw.findByIdAndUpdate(
-        id,
-        { Decline: true },
-        { new: true }
-      );
-      await Balance.findOneAndUpdate(
-        { user_id: withdraw?.seller_id },
-        {
-          balance: withdraw?.amount,
-        },
-        { new: true }
-      );
-    }
-    res.status(201).json({
-      message: "Approval complete",
-      success: true,
-    });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
-
-const handleAllNumber = async (req, res) => {
-  try {
-    const withdraw_num = await Withdraw.find();
-    const order_num = await Order.find();
-    const gift_num = await Gift.find();
-    const blog_num = await Blog.find();
-
-    const count = {
-      withdraw: withdraw_num.length,
-      order: order_num.length,
-      gift: gift_num.length,
-      blog: blog_num.length,
-    };
-    res
-      .status(201)
-      .json({ message: "successfully get count", success: true, count });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -206,9 +161,7 @@ module.exports = {
   handleProductPost,
   handleGetProducts,
   handleProductDelete,
-  handleAllNumber,
-  handleWithdrawGet,
   handleAdminDeleteAGift,
   handleAdminGetAllGifts,
-  handleWithdrawApproval,
+  handleDashBoardCount,
 };

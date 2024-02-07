@@ -15,17 +15,14 @@ const {
   handleAdminLogin,
   handleAdminDeleteAGift,
   handleAdminGetAllGifts,
-  handleWithdrawGet,
-  handleWithdrawApproval,
-  handleAllNumber,
   handleProductPost,
   handleGetProducts,
   handleProductDelete,
+  handleDashBoardCount,
 } = require("../../controller/admin.controller");
 
 const {
   handleOrderGet,
-  handleOrderDelete,
 } = require("../../controller/order.controller");
 
 const adminauthCheck = require("../../middleware/adminauth");
@@ -72,19 +69,6 @@ router.get("/products", handleGetProducts);
 router.delete("/delete/:id", adminauthCheck, handleProductDelete);
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 ///////////////////////////////////////////
 // Admin Blog
 router.post(
@@ -105,12 +89,6 @@ router.delete("/gift/delete/:id", adminauthCheck, handleAdminDeleteAGift);
 //Admin Orders
 
 router.get("/order/get/all", adminauthCheck, handleOrderGet);
-router.delete("/order/delete/:id", adminauthCheck, handleOrderDelete);
+router.get("/count", handleDashBoardCount)
 
-//Admin withdraw
-
-router.get("/withdraw/get/all", adminauthCheck, handleWithdrawGet);
-router.post("/withdraw/approve", adminauthCheck, handleWithdrawApproval);
-
-router.get("/count", handleAllNumber);
 module.exports = router;

@@ -48,6 +48,40 @@ export const getOrderPaginate = async (data: object) => {
   return order;
 };
 
+export const getPendingOrderPaginate = async (data: object) => {
+  const order = await axiosBaseURL
+    /*@ts-ignore */
+    .get(`/v1/order/getpendingpagenated/?page=${data?.page}`)
+    .then(function (res) {
+      return res;
+    })
+    .then(function (resData) {
+      console.log(resData.data);
+      return resData.data;
+    })
+    .catch(function (err) {
+      console.log(err);
+    });
+  return order;
+};
+
+export const getDeliveredOrderPaginate = async (data: object) => {
+  const order = await axiosBaseURL
+    /*@ts-ignore */
+    .get(`/v1/order/getdeliveredpagenated/?page=${data?.page}`)
+    .then(function (res) {
+      return res;
+    })
+    .then(function (resData) {
+      console.log(resData.data);
+      return resData.data;
+    })
+    .catch(function (err) {
+      console.log(err);
+    });
+  return order;
+};
+
 export const verifyPayment = async (data: object) => {
   console.log(data);
   const order = await axiosBaseURL
@@ -56,6 +90,7 @@ export const verifyPayment = async (data: object) => {
       return res;
     })
     .then(function (resData) {
+      console.log("order data", resData.data)
       return resData.data;
     })
     .catch(function (err) {
@@ -64,41 +99,19 @@ export const verifyPayment = async (data: object) => {
   return order;
 };
 
-export const ApproveDelivery = async ({ data, token }: any) => {
-  console.log("approve");
+export const ApproveDelivery = async (id: string) => {
   const order = await axiosBaseURL
-    .post(`/v1/order/approve`, data, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
+    .get(`/v1/order/deliver/${id}`)
     .then(function (res) {
       return res;
     })
     .then(function (resData) {
+      console.log(resData.data)
       return resData.data;
     })
     .catch(function (err) {
       console.log(err);
     });
-  return order;
-};
 
-export const deleteOrder = async ({ id, token }: any) => {
-  const order = await axiosBaseURL
-    .delete(`/v1/order/delete/${id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-    .then(function (res) {
-      return res;
-    })
-    .then(function (resData) {
-      return resData.data;
-    })
-    .catch(function (err) {
-      console.log(err);
-    });
   return order;
 };

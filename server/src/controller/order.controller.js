@@ -2,22 +2,22 @@ const { uuid } = require("uuidv4");
 const axios = require("axios");
 const Order = require("../models/orders.model");
 const User = require("../models/user.models");
-const Balance = require("../models/balance.models");
 
 const handleOrderCreate = async (req, res) => {
   try {
     const {
-      GiftId,
+      FirstName,
+      LastName,
+      Email,
+      PhoneNumber,
+      KefleKetema,
+      FriendlyPlace,
+      Amount,
+      ProductId,
       BuyerId,
-      SellerId,
-      GiftImage,
-      GiftName,
+      ProductName,
+      ProductImage,
       OrderDate,
-      amount,
-      email,
-      first_name,
-      last_name,
-      phone_number,
     } = req.body;
 
     const tx_ref = uuid();
@@ -26,14 +26,14 @@ const handleOrderCreate = async (req, res) => {
       .post(
         "https://api.chapa.co/v1/transaction/initialize",
         {
-          amount,
+          amount: Amount,
           currency: "ETB",
-          email,
-          first_name,
-          last_name,
-          phone_number,
+          email: Email,
+          first_name: FirstName,
+          last_name: LastName,
+          phone_number: PhoneNumber,
           tx_ref,
-          return_url: "https://merita.netlify.app/buyerpage/payment/verify",
+          return_url: "http://localhost:5173/buyerpage/payment/verify",
         },
         {
           headers: {
@@ -49,17 +49,21 @@ const handleOrderCreate = async (req, res) => {
       try {
         console.log("create");
         await Order.create({
-          GiftId,
+          FirstName,
+          LastName,
+          Email,
+          PhoneNumber,
+          KefleKetema,
+          FriendlyPlace,
+          Amount,
+          ProductId,
           BuyerId,
-          SellerId,
+          ProductName,
+          ProductImage,
           tx_ref,
-          amount,
-          paymentStatus: "pending",
-          GiftImage,
-          GiftName,
+          PayemntVerify: false,
+          Delivered: false,
           OrderDate,
-          OrderActive: false,
-          OrderDelivered: false,
         });
         res.json({
           status: "success",
@@ -71,7 +75,7 @@ const handleOrderCreate = async (req, res) => {
           status: "fail",
           url: null,
         });
-        res.redirect("https://merita.netlify.app/buyerpage/payment/failure");
+        res.redirect("http://localhost:5173/buyerpage/payment/failure");
       }
     } else {
       console.log("error");
@@ -81,12 +85,11 @@ const handleOrderCreate = async (req, res) => {
   }
 };
 
-const handleOrderVerification = async (req, res) => {
+const handleOrderVerification = async (req, res) => { 
   try {
     console.log("verify complete");
     const { tx_ref } = req.body;
 
-    console.log(`text_ref  ${tx_ref}`);
     if (tx_ref) {
       await axios
         .get(`https://api.chapa.co/v1/transaction/verify/${tx_ref}`, {
@@ -102,7 +105,7 @@ const handleOrderVerification = async (req, res) => {
                   {
                     tx_ref: tx_ref,
                   },
-                  { OrderActive: true, paymentStatus: "completed" },
+                  { PayemntVerify: true },
                   { new: true }
                 );
                 res.json({
@@ -184,49 +187,74 @@ const handleOrderGetPaginate = async (req, res) => {
   }
 };
 
-const handleOrderApprove = async (req, res) => {
+const handlePendingOrderGetPaginate = async (req, res) => {
   try {
-    const { id, userId } = req.body;
-    console.log("order approve");
-    const order = await Order.findByIdAndUpdate(
-      id,
-      {
-        OrderDelivered: true,
-      },
-      { new: true }
-    );
-    const value = await Balance.find({ user_id: userId });
-    console.log("balance", value);
-    console.log("balance", value[0].balance);
-    const balance = await Balance.findOneAndUpdate(
-      { user_id: userId },
-      {
-        balance: order.amount + value[0].balance,
-      },
-      { new: true }
-    );
-    console.log("order amount", order.amount);
-    console.log("user id", userId);
-    console.log("balance", balance);
-    res.json({ message: "Delivery approved" });
+    const pageNum = req.query.page || 0;
+    const orderPerPage = 3;
+
+    const orderList = [];
+    const order = await Order.find({ Delivered: false })
+        .skip(pageNum * orderPerPage)
+        .limit(orderPerPage);
+      
+    order.forEach((o) => orderList.push(o));
+    
+    res.status(201).json({
+      message: "blog fetched successfully",
+      success: true,
+      orders: orderList,
+      hasMore: orderList.length == orderPerPage,
+    });
   } catch (err) {
+    console.log("verify error");
     res.status(500).json({ error: err.message });
   }
 };
 
-const handleOrderDelete = async (req, res) => {
+const handleDeliveredOrderGetPaginate = async (req, res) => {
   try {
-    const { id } = req.params;
-    const deletedDocument = await Order.findByIdAndDelete(id);
-    if (!deletedDocument) {
-      return res.status(404).json({ error: "Document not found" });
+    const pageNum = req.query.page || 0;
+    const orderPerPage = 3;
+
+    const orderList = [];
+    const order = await Order.find({ Delivered: true })
+        .skip(pageNum * orderPerPage)
+        .limit(orderPerPage);
+      
+    order.forEach((o) => orderList.push(o));
+    
+    res.status(201).json({
+      message: "blog fetched successfully",
+      success: true,
+      orders: orderList,
+      hasMore: orderList.length == orderPerPage,
+    });
+  } catch (err) {
+    console.log("verify error");
+    res.status(500).json({ error: err.message });
+  }
+};
+
+
+const handleApproveDelivery = async (req, res) => {
+  try {
+    const id = req.params.id;
+
+    const update = await Order.findByIdAndUpdate(
+      id,
+      { Delivered: true },
+      { new: true }
+    );
+
+    if (!update) {
+      return res.status(404).json({ delivered: false });
     }
-    res.json({ message: "Document deleted successfully" });
-  } catch (error) {
-    console.error(error);
+    
     res
-      .status(500)
-      .json({ error: "An error occurred while deleting the document" });
+      .status(201)
+      .json({ delivered: false });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
 };
 
@@ -235,6 +263,7 @@ module.exports = {
   handleOrderVerification,
   handleOrderGet,
   handleOrderGetPaginate,
-  handleOrderApprove,
-  handleOrderDelete,
+  handlePendingOrderGetPaginate,
+  handleDeliveredOrderGetPaginate,
+  handleApproveDelivery,
 };

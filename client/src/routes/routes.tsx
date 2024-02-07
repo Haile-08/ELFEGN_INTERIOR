@@ -7,7 +7,6 @@ import {
 import {
   Admin,
   AdminLogin,
-  AuthLoading,
   BlogComments,
   BlogDispaly,
   BlogList,
@@ -16,7 +15,6 @@ import {
   BuyerPage,
   BuyerProfile,
   BuyerShop,
-  ChatBox,
   Dashboard,
   GiftPage,
   HomeAboutPage,
@@ -38,16 +36,7 @@ import {
   ProductPost,
   Request,
   Reset,
-  SellerGifts,
-  SellerMessage,
-  SellerOrder,
-  SellerPage,
-  SellerProfile,
-  SellerWithdraw,
   Signup,
-  WithdrawFailure,
-  WithdrawLoading,
-  WithdrawSuccess,
 } from "../components";
 import { useSelector } from "react-redux";
 import Checkout from "../components/checkout/Checkout";
@@ -180,11 +169,6 @@ function Routes() {
       errorElement: <ErrorPage />,
     },
     {
-      path: "/auth/loading/:id/:token/:isbuyer",
-      element: <AuthLoading />,
-      errorElement: <ErrorPage />,
-    },
-    {
       path: "/buyerpage",
       // element: isBuyer ? <BuyerPage /> : <Navigate to="/login" />,
       element: <BuyerPage />,
@@ -226,64 +210,11 @@ function Routes() {
       path: "/giftpage/:id",
       element: <GiftPage />,
       errorElement: <ErrorPage />,
-      children: [
-        {
-          path: "/giftpage/:id/room/:roomId",
-          element: <ChatBox />,
-        },
-      ],
     },
     {
       path: "/giftpage/:id/checkout",
       element: <Checkout />,
       errorElement: <ErrorPage />,
-    },
-    {
-      path: "/sellerpage",
-      // element: isSeller ? <SellerPage /> : <Navigate to="/login" />,
-      element: <SellerPage />,
-      errorElement: <ErrorPage />,
-      children: [
-        {
-          path: "/sellerpage/profile",
-          element: <SellerProfile />,
-        },
-        {
-          path: "/sellerpage/order",
-          element: <SellerOrder />,
-        },
-        {
-          path: "/sellerpage/message",
-          element: <SellerMessage />,
-          children: [
-            {
-              path: "/sellerpage/message/:roomId",
-              element: <ChatBox />,
-            },
-          ],
-        },
-        {
-          path: "/sellerpage/gift",
-          element: <SellerGifts />,
-        },
-        
-        {
-          path: "/sellerpage/withdraw",
-          element: <SellerWithdraw />,
-        },
-        {
-          path: "/sellerpage/withdraw/verify",
-          element: <WithdrawLoading />,
-        },
-        {
-          path: "/sellerpage/withdraw/success",
-          element: <WithdrawSuccess />,
-        },
-        {
-          path: "/sellerpage/withdraw/failure",
-          element: <WithdrawFailure />,
-        },
-      ],
     },
   ]);
   return <RouterProvider router={router} />;

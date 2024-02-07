@@ -58,8 +58,8 @@ function Admin() {
             <MenuItem component={<Link to="/admin/product/list" />}>List</MenuItem>
           </SubMenu>
           <SubMenu label="Order" icon={<BsCart3 />}>
-            <MenuItem component={<Link to="/admin/order/delivered" />}>Pending</MenuItem>
-            <MenuItem component={<Link to="/admin/order/pending" />}>Deliverd</MenuItem>
+            <MenuItem component={<Link to="/admin/order/pending" />}>Pending</MenuItem>
+            <MenuItem component={<Link to="/admin/order/delivered" />}>Deliverd</MenuItem>
           </SubMenu>
           <SubMenu label="Blog" icon={<TbBrandBlogger />}>
             <MenuItem component={<Link to="/admin/blog/post" />}>Post</MenuItem>

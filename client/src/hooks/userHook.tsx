@@ -41,6 +41,7 @@ export const posSellertUserImage = async ({ data, token }: any) => {
 };
 
 export const postUserUpdate = async ({ data, token }: any) => {
+  console.log(data)
   const user = await axiosBaseURL
     /*@ts-ignore */
     .put(`/v1/user/update/${data.id}`, data.info, {
@@ -82,22 +83,20 @@ export const postSellerUserUpdate = async ({ data, token }: any) => {
   return user;
 };
 
-export const getChatSenderImage = async (id: string) => {
-  console.log(id);
-  console.log("get sender image");
-  const image = await axiosBaseURL
-    .get(`/v1/chat/image/${id}`)
+export const getUser = async (id: string | null) => {
+  const user = await axiosBaseURL
+    .get(`/v1/user/get/${id}`)
     .then(function (res) {
       return res;
     })
     .then(function (resData) {
       console.log(resData.data);
-      return resData.data;
+      return resData.data.user;
     })
     .catch(function (err) {
       console.log(err);
     });
-  return image;
+  return user;
 };
 
 export const getChatReceiverImage = async (id: string) => {

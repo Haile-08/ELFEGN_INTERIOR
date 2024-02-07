@@ -36,6 +36,14 @@ const ProductSchema = new Schema({
     type: Number,
     default: 0,
   },
+  KefleKetema: {
+    type: String,
+    min: 1,
+  },
+  FriendlyPlace: {
+    type: String,
+    min: 1,
+  },
 });
 
 module.exports = mongoose.model("Product", ProductSchema);

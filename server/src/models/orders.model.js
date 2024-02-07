@@ -2,60 +2,63 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const orderSchema = new Schema({
-  GiftId: {
+  FirstName: {
     type: String,
     min: 1,
-    require: true,
+  },
+  LastName: {
+    type: String,
+    min: 1,
+  },
+  Email: {
+    type: String,
+    min: 1,
+  },
+  PhoneNumber: {
+    type: String,
+  },
+  KefleKetema: {
+    type: String,
+    min: 1,
+  },
+  FriendlyPlace: {
+    type: String,
+    min: 1,
+  },
+  Amount: {
+    type: Number,
+  },
+  ProductId: {
+    type: String,
+    min: 1,
   },
   BuyerId: {
     type: String,
     min: 1,
-    require: true,
   },
-  SellerId: {
+  ProductName: {
     type: String,
     min: 1,
   },
-  amount: {
-    type: Number,
-  },
-  GiftPrice: {
-    type: Number,
-    min: 1,
+  ProductImage: {
+    type: String,
   },
   tx_ref: {
     type: String,
-    require: true,
   },
-  paymentStatus: {
-    type: String,
-    enum: ["pending", "completed"],
-    default: "pending",
-  },
-  GiftImage: {
-    type: String,
-    require: true,
-  },
-  GiftName: {
-    type: String,
+  PayemntVerify: {
+    type: Boolean,
     min: 1,
-    require: true,
+  },
+  Delivered: {
+    type: Boolean,
+    min: 1,
   },
   OrderDate: {
     type: String,
     min: 1,
-    require: true,
   },
-  OrderActive: {
-    type: Boolean,
-    min: 1,
-    require: true,
-  },
-  OrderDelivered: {
-    type: Boolean,
-    min: 1,
-    require: true,
-  },
+
 });
 
 module.exports = mongoose.model("order", orderSchema);

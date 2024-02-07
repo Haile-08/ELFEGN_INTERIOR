@@ -1,19 +1,13 @@
 import { useMutation, useQuery } from "react-query";
 import "./GiftPage.css";
-import { getAGift, getAllGifts, updateGiftRating } from "../../hooks/giftHook";
-import { Outlet, useNavigate, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useState } from "react";
 //@ts-ignore
 import { v4 as uuidv4 } from "uuid";
-import { io, Socket } from "socket.io-client";
-import { retrieveRooms } from "../../hooks/chatHook";
-import { motion, AnimatePresence } from "framer-motion";
 import { Rating } from "react-simple-star-rating";
 import back from "../../assets/back.png";
 import star from "../../assets/star.png";
 import order from "../../assets/order.png";
-import chat from "../../assets/chat.png";
-import close from "../../assets/close.png";
 import {
   FacebookIcon,
   FacebookShareButton,
@@ -25,33 +19,32 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { setLogin } from "../../actions/authSlice";
 import { useTranslation } from "react-i18next";
+import { getAProduct, getAllProduct, updateProductRating } from "../../hooks/productHook";
 
 function GiftPage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const { id } = useParams();
-  const [socket, setSocket] = useState<Socket<any, any> | null>(null);
-  const [modal, setModal] = useState(false);
   const [loadingModal, setLoadingModal] = useState(false);
+  const user = useSelector((state: any) => state.auth.user);
+  const token = useSelector((state: any) => state.auth.userToken);
+  
 
-  const gift = useQuery({
+  const product = useQuery({
     queryKey: ["gift", id],
     //@ts-ignore
-    queryFn: () => getAGift(id),
+    queryFn: () => getAProduct(id),
   });
-  const user = useSelector((state: any) => state.auth.user);
-  const buyerToken = useSelector((state: any) => state.auth.buyerToken);
-  const room = useQuery(["rooms"], retrieveRooms);
-  const gifts = useQuery(["all_gift"], getAllGifts);
+  const products = useQuery(["all_gift"], getAllProduct);
 
-  const rating = useMutation(updateGiftRating, {
+  const rating = useMutation(updateProductRating, {
     onSuccess: (data) => {
-      gift.refetch();
+      product.refetch();
       dispatch(
         setLogin({
           user: data.user,
-          buyerToken,
+          userToken: token,
         })
       );
       setLoadingModal(false);
@@ -61,89 +54,26 @@ function GiftPage() {
     },
   });
   const handleRating = (rate: number) => {
-    gift.refetch();
+    product.refetch();
     rating.mutate({
       data: {
-        gift_id: gift?.data?._id,
+        product_id: product?.data?._id,
         //@ts-ignore
         buyer_id: user?._id,
         rating_num: rate,
       },
-      token: buyerToken,
+      token,
     });
     setLoadingModal(true);
   };
 
-  useEffect(() => {
-    setSocket(io("https://merita.onrender.com/"));
-  }, []);
-
-  const handleChat = async (id: any) => {
-    //@ts-ignore
-    const buyer = user?.firstName + " " + user?.lastName;
-    const seller = gift.data?.gift_client;
-    //@ts-ignore
-    const buyerId = user?._id;
-    const sellerId = gift.data?.seller_id;
-    const checkId = room?.data?.some(
-      (item: any) => item.sellerId === sellerId && item.buyerId === buyerId
-    );
-    console.log(checkId);
-    if (checkId) {
-      const value = room?.data?.filter((obj: any) => obj.seller == seller);
-      const roomId = value[0].roomId;
-      socket?.emit("room", {
-        roomId,
-        buyer,
-        seller,
-        buyerId,
-        sellerId,
-        productId: id,
-      });
-      navigate(`/giftpage/${id}/room/${roomId}`);
-    } else {
-      const roomId = uuidv4();
-      socket?.emit("room", {
-        roomId,
-        buyer,
-        seller,
-        buyerId,
-        sellerId,
-        productId: id,
-      });
-      navigate(`/giftpage/${id}/room/${roomId}`);
-    }
-    setModal(!modal);
-  };
+  
   const checkItemCategory = (item: any) => {
-    if (item?.gift_category === gift?.data?.gift_category) {
+    if (item?.gift_category === product?.data?.gift_category) {
       return true;
     } else {
       return false;
     }
-  };
-  const chatShadowVariant = {
-    visible: {
-      opacity: 0.3,
-      width: "65dvw",
-      transition: { delay: 0.5, type: "tween" },
-    },
-    hidden: {
-      opacity: 0,
-      width: "100dvw",
-      transition: { delay: 0.5, type: "tween" },
-    },
-    leave: {
-      opacity: 0,
-      width: "100dvw",
-      transition: { delay: 0.5, type: "tween" },
-    },
-  };
-
-  const chatInputVariant = {
-    visible: { x: 0, transition: { delay: 0.4, type: "tween" } },
-    hidden: { x: "100dvw", transition: { delay: 0.4, type: "tween" } },
-    leave: { x: "100dvw", transition: { delay: 0.5, type: "tween" } },
   };
 
   return (
@@ -157,36 +87,36 @@ function GiftPage() {
         <img
           src={back}
           alt="back-arrow"
-          onClick={() => navigate("/buyerpage/shop")}
+          onClick={() => navigate("/buyerpage/shop?user=null")}
         />
         <div className="social-share-links">
           <FacebookShareButton
             url={`http://localhost:5173/giftpage/${id}`}
             /*@ts-ignore */
-            quote={`${gift?.data?.gift_description}`}
-            hashtag={`#${gift?.data?.gift_category}`}
+            quote={`${product?.data?.description}`}
+            hashtag={`#${product?.data?.category}`}
           >
             <FacebookIcon size={30} round={true} />
           </FacebookShareButton>
           <TwitterShareButton
             url={`http://localhost:5173/giftpage/${id}`}
             /*@ts-ignore */
-            quote={`${gift?.data?.gift_description}`}
-            hashtag={`#${gift?.data?.gift_category}`}
+            quote={`${product?.data?.description}`}
+            hashtag={`#${product?.data?.gift_category}`}
           >
             <TwitterIcon size={30} round={true} />
           </TwitterShareButton>
           <TelegramShareButton
             url={`http://localhost:5173/giftpage/${id}`}
             /*@ts-ignore */
-            quote={`${gift?.data?.gift_description}`}
-            hashtag={`#${gift?.data?.gift_category}`}
+            quote={`${product?.data?.description}`}
+            hashtag={`#${product?.data?.gift_category}`}
           >
             <TelegramIcon size={30} round={true} />
           </TelegramShareButton>
         </div>
       </div>
-      {gift.isLoading ? (
+      {product.isLoading ? (
         <div className="gift-all-loader">
           <div className="buyer-loader"></div>
         </div>
@@ -196,26 +126,26 @@ function GiftPage() {
             <div className="gift-image">
               <img
                 src={
-                  "https://merita.onrender.com" +
-                  gift?.data?.gift_image.substring(6)
+                  "http://localhost:5000/" +
+                  product?.data?.image.substring(6)
                 }
                 alt="content-image"
                 crossOrigin="anonymous"
               />
             </div>
             <div className="gift-info">
-              <div className="gift-name">{gift.data.gift_name}</div>
+              <div className="gift-name">{product.data.name}</div>
               <div className="gift-star">
-                <p>{parseInt(gift.data.gift_star)}</p>
+                <p>{parseInt(product.data.star)}</p>
                 {Array.from(
-                  { length: gift.data.gift_star },
+                  { length: product.data.star },
                   (_, index: number) => index
                 ).map(() => (
                   <img src={star} alt="star" />
                 ))}
               </div>
-              <div className="gift-price">{gift.data.gift_price} Birr</div>
-              {buyerToken ? (
+              <div className="gift-price">{product.data.price} Birr</div>
+              {token ? (
                 <>
                   <div className="gift-btn">
                     <button
@@ -226,18 +156,9 @@ function GiftPage() {
                       <img src={order} alt="order" />
                       {t("buyerGiftPageorder")}
                     </button>
-                    <button
-                      onClick={(e: any) => {
-                        e.preventDefault();
-                        handleChat(id);
-                      }}
-                    >
-                      <img src={chat} alt="chat" />
-                      {t("buyerGiftPageChat")}
-                    </button>
                   </div>
                   {/*@ts-ignore */}
-                  {user?.rated_gifts.includes(gift?.data?._id) ? (
+                  {user?.rated_gifts.includes(product?.data?._id) ? (
                     <p className="already_reviewed">
                       {t("buyerAlreadyReview")}
                     </p>
@@ -258,7 +179,7 @@ function GiftPage() {
               )}
 
               <div className="gift-decription">
-                {gift.data.gift_description}
+                {product.data.description}
               </div>
             </div>
           </div>
@@ -267,7 +188,7 @@ function GiftPage() {
               <p>{t("buyerGoodGiftSuggestion")}</p>
             </div>
             <div className="gift-suggestion-list">
-              {gifts?.data?.gifts
+              {products?.data?.gifts
                 ?.filter(checkItemCategory)
                 .sort((a: any, b: any) => b.gift_star - a.gift_star)
                 .slice(0, 3)
@@ -279,7 +200,7 @@ function GiftPage() {
                     <div className="gift-suggestion-item-image">
                       <img
                         src={
-                          "https://merita.onrender.com" +
+                          "http://localhost:5000/" +
                           item.gift_image.substring(6)
                         }
                         alt="content-image"
@@ -295,48 +216,6 @@ function GiftPage() {
           </div>
         </>
       )}
-      <AnimatePresence>
-        {modal && (
-          <div className="chat-modal">
-            <motion.div
-              className="chat-modal-shadow"
-              onClick={() => {
-                navigate(`/giftpage/${id}`);
-                room.refetch();
-                setModal(!modal);
-              }}
-              initial="hidden"
-              animate="visible"
-              exit="leave"
-              variants={chatShadowVariant}
-            >
-              .
-            </motion.div>
-            <motion.div
-              className="chat-modal-input"
-              initial="hidden"
-              animate="visible"
-              exit="leave"
-              variants={chatInputVariant}
-            >
-              <div className="chat-modal-input-close">
-                <button
-                  onClick={() => {
-                    navigate(`/giftpage/${id}`);
-                    room.refetch();
-                    setModal(!modal);
-                  }}
-                >
-                  <img src={close} alt="close" />
-                </button>
-              </div>
-              <div className="chat">
-                <Outlet context={{ socket, receiver: gift.data?.seller_id }} />
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
     </div>
   );
 }

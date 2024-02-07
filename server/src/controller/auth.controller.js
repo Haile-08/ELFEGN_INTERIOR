@@ -3,7 +3,6 @@ const crypto = require("crypto");
 const jwt = require("jsonwebtoken");
 const User = require("../models/user.models");
 const Token = require("../models/token.models");
-const Balance = require("../models/balance.models");
 const sendEmail = require("../utils/email/sendEmail");
 
 /* Register seller */

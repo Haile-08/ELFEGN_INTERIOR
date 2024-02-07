@@ -44,22 +44,6 @@ function BuyerPage() {
     // Other properties of the item object
   }
 
-  const checkPrice = (item: Item) => {
-    if (priceTag === "all") {
-      return true;
-    } else if (priceTag === "greater-than-1000") {
-      return item.gift_price > 1000;
-    } else if (priceTag === "less-than-1000") {
-      return item.gift_price <= 1000 && item.gift_price >= 500;
-    } else if (priceTag === "less-than-500") {
-      return item.gift_price < 500 && item.gift_price >= 100;
-    } else if (priceTag === "less-than-100") {
-      return item.gift_price < 100 && item.gift_price >= 1;
-    } else {
-      return true;
-    }
-  };
-
   const checkDate = (item: Item) => {
     const dateToday = new Date();
     const giftDate = new Date(item.gift_date);
@@ -185,64 +169,6 @@ function BuyerPage() {
                 variants={navInputVariant}
               >
                 <div className="buyer-sidebar-filter">
-                  <div className="buyer-tag">
-                    <p className="buyer-tag-title">{t("buyerPriceGift")}</p>
-                    <div className="price-tag">
-                      <input
-                        type="radio"
-                        name="price"
-                        onChange={(e) => {
-                          e.preventDefault;
-                          setPriceTag("greater-than-1000");
-                        }}
-                      />
-                      <p>{t("buyerGreaterThan1000")}</p>
-                    </div>
-                    <div className="price-tag">
-                      <input
-                        type="radio"
-                        name="price"
-                        onChange={(e) => {
-                          e.preventDefault;
-                          setPriceTag("less-than-1000");
-                        }}
-                      />
-                      <p>{t("buyerLessThan1000")}</p>
-                    </div>
-                    <div className="price-tag">
-                      <input
-                        type="radio"
-                        name="price"
-                        onChange={(e) => {
-                          e.preventDefault;
-                          setPriceTag("less-than-500");
-                        }}
-                      />
-                      <p>{t("buyerLessThan500")}</p>
-                    </div>
-                    <div className="price-tag">
-                      <input
-                        type="radio"
-                        name="price"
-                        onChange={(e) => {
-                          e.preventDefault;
-                          setPriceTag("less-than-100");
-                        }}
-                      />
-                      <p>{t("buyer1to100")}</p>
-                    </div>
-                    <div className="price-tag">
-                      <input
-                        type="radio"
-                        name="price"
-                        onChange={(e) => {
-                          e.preventDefault;
-                          setPriceTag("all");
-                        }}
-                      />
-                      <p>{t("buyerAllPrice")}</p>
-                    </div>
-                  </div>
                   <div className="buyer-tag">
                     <p className="buyer-tag-title">{t("buyerDateOfGift")}</p>
                     <div className="date-tag">
@@ -480,7 +406,7 @@ function BuyerPage() {
                       <img src={profile} alt="profile" />
                       <p>{t("navProfileTXt")}</p>
                     </button>
-                    <button onClick={() => navigate("/buyerpage/shop")}>
+                    <button onClick={() => navigate("/buyerpage/shop?user=null")}>
                       <img src={store} alt="store" />
                       <p>{t("buyerStore")}</p>
                     </button>
@@ -548,7 +474,7 @@ function BuyerPage() {
             )}
           </AnimatePresence>
           <Outlet
-            context={{ checkPrice, checkDate, checkStar, checkCategory }}
+            context={{  checkDate, checkStar, checkCategory }}
           />
         </div>
       </>

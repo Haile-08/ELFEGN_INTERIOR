@@ -8,7 +8,7 @@ function PaymentFailure() {
   const { t } = useTranslation();
   const handleStorNav = (e: any) => {
     e.preventDefault();
-    navigate("/buyerpage/shop");
+    navigate("/buyerpage/shop?user=null");
   };
   return (
     <div className="payment-failure">

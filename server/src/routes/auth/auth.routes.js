@@ -36,7 +36,7 @@ router.get(
     );
     console.log(userToken)
     res.redirect(
-        `http://localhost:5173/buyerpage/shop?tokenid=${userToken}`
+        `http://localhost:5173/buyerpage/shop?user=${userToken}&id=${req.user._id}`
     );
   }
 );

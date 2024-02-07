@@ -1,41 +1,55 @@
 import "./BuyerShop.css";
-import { useQuery } from "react-query";
+import { useMutation, useQuery } from "react-query";
 import { motion } from "framer-motion";
 import { useNavigate, useOutletContext, useSearchParams } from "react-router-dom";
-import { getGifts } from "../../../hooks/giftHook";
-import { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { setLogin } from "../../../actions/authSlice";
+import { getUser } from "../../../hooks/userHook";
+import { getAllProduct } from "../../../hooks/productHook";
+
+
+interface GiftItem {
+  _id: string;
+  image: string;
+  name: string;
+  price: string;
+} 
 
 function BuyerShop() {
-  const { t } = useTranslation();
   const dispatch = useDispatch();
-  const [page, setPage] = useState(0);
-  const { isLoading, data, isPreviousData, refetch } = useQuery({
-    queryKey: ["gifts", page],
-    queryFn: () => getGifts(page),
-    keepPreviousData: true,
-  });
-  const { checkPrice, checkDate, checkStar, checkCategory }: any =
+  const { data, isLoading, refetch } = useQuery('myData', getAllProduct);
+  const {  checkDate, checkStar, checkCategory }: any =
     useOutletContext();
     const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
-  interface GiftItem {
-    _id: string;
-    gift_image: string;
-    gift_name: string;
-    gift_price: string;
-  }
+
+  console.log("data", data)
+  const {mutate} = useMutation(getUser, {
+    onSuccess: (data) => {
+      console.log("user",data);
+      const token = searchParams.get('user');
+      if (token != "null"){
+      dispatch(
+        setLogin({
+          user: data,
+          userToken: token,
+        })
+      );
+    }
+    },
+    onError: () => {
+      console.log("there was an error");
+    },
+  });
 
   useEffect(() => {
-    const token = searchParams.get('tokenid');
-    if(token != "null"){
-      dispatch(setLogin({
-        userToken: token,
-      }))
+    const id = searchParams.get('id');
+    const token = searchParams.get('user');
+    
+    if (token !== "null" && token !== undefined) {
+      mutate(id);
     }
-    console.log("token admin",token)
     refetch();
   }, []);
   return (
@@ -45,9 +59,7 @@ function BuyerShop() {
       ) : (
         <div className="buyer-gift-list-items">
           <div className="buyer-gift-list-items-all">
-            {data?.gifts
-              ?.filter(checkPrice)
-              ?.filter(checkDate)
+            {data?.filter(checkDate)
               ?.filter(checkStar)
               ?.filter(checkCategory)
               ?.map((item: GiftItem, index: number) => (
@@ -63,38 +75,19 @@ function BuyerShop() {
                   >
                     <img
                       src={
-                        "https://merita.onrender.com" +
-                        item.gift_image.substring(6)
+                        "http://localhost:5000/" +
+                        item.image.substring(6)
                       }
                       alt="image"
                       crossOrigin="anonymous"
                     />
-                    <div className="buyer-gift-name">{item.gift_name}</div>
+                    <div className="buyer-gift-name">{item.name}</div>
                     <div className="buyer-gift-price">
-                      {item.gift_price}Birr
+                      {item.price}Birr
                     </div>
                   </div>
                 </motion.div>
               ))}
-          </div>
-          <div className="buyer-list-pagination">
-            <button
-              onClick={() => setPage((old) => Math.max(old - 1, 0))}
-              disabled={page === 0}
-            >
-              {t("previous")}
-            </button>
-            <p>{page}</p>
-            <button
-              onClick={() => {
-                if (!isPreviousData && data?.hasMore) {
-                  setPage((old) => old + 1);
-                }
-              }}
-              disabled={isPreviousData || !data?.hasMore}
-            >
-              {t("next")}
-            </button>
           </div>
         </div>
       )}

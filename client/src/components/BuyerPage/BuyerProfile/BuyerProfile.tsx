@@ -16,16 +16,12 @@ function BuyerProfile() {
   const [edit, setEdit] = useState(false);
   const [image, setImage] = useState({ image: "" });
   const user = useSelector((state: any) => state.auth.user);
-  const buyerToken = useSelector((state: any) => state.auth.buyerToken);
+  const token = useSelector((state: any) => state.auth.userToken);
   const [update, setUpdate] = useState({
-    bio: "",
     firstName: "",
     lastName: "",
-    phone_number: "",
-    city: "",
-    country: "",
+    phoneNumber: "",
   });
-
   const handleImage = (e: any) => {
     setImage({ image: e.target.files[0] });
   };
@@ -39,7 +35,7 @@ function BuyerProfile() {
       dispatch(
         setLogin({
           user: data,
-          buyerToken,
+          userToken: token,
         })
       );
     },
@@ -53,7 +49,7 @@ function BuyerProfile() {
       dispatch(
         setLogin({
           user: data,
-          buyerToken,
+          userToken: token,
         })
       );
     },
@@ -67,19 +63,24 @@ function BuyerProfile() {
     const imageF = new FormData();
     imageF.append("image", image.image);
     imageF.append("email", user.email);
-    imageMutate.mutate({ data: imageF, token: buyerToken });
+    console.log("image", image.image);
+    console.log("email", user.email);
+    console.log("token", token)
+    imageMutate.mutate({ data: imageF, token });
   };
 
   const handleUpdateSubmit = (id: string) => {
+    
     const info = {
       firstName: update.firstName,
       lastName: update.lastName,
-      phone_number: update.phone_number,
-      city: update.city,
-      country: update.country,
+      phoneNumber: update.phoneNumber,
     };
     const data = { info, id };
-    userUpdate.mutate({ data, token: buyerToken });
+    console.log("user update", data)
+    console.log("edit token", token)
+    console.log("phone number", update.phoneNumber)
+    userUpdate.mutate({ data, token });
   };
 
   return (
@@ -91,7 +92,7 @@ function BuyerProfile() {
             {user?.image ? (
               <img
                 crossOrigin="anonymous"
-                src={`https://merita.onrender.com${user.image.substring(6)}`}
+                src={`http://localhost:5000/${user.image.substring(6)}`}
               />
             ) : (
               <img src={a_user} alt="user" />
@@ -165,8 +166,8 @@ function BuyerProfile() {
               <input
                 type="text"
                 placeholder={t("aboutTxtPhone")}
-                name="phone_number"
-                value={update.phone_number}
+                name="phoneNumber"
+                value={update.phoneNumber}
                 onChange={handleChange}
                 required
               />
@@ -174,50 +175,14 @@ function BuyerProfile() {
           ) : (
             <div className="input">
               <h4>{t("aboutTxtPhone")}</h4>
-              <p>{user?.phone_number}</p>
+              <p>{user?.phoneNumber}</p>
             </div>
           )}
 
           <div className="input">
             <h4>{t("email")}</h4>
             <p>{user?.email}</p>
-          </div>
-          {edit ? (
-            <div className="input">
-              <h4>{t("city")}</h4>
-              <input
-                type="text"
-                placeholder={t("city")}
-                name="city"
-                value={update.city}
-                onChange={handleChange}
-                required
-              />
-            </div>
-          ) : (
-            <div className="input">
-              <h4>{t("city")}</h4>
-              <p>{user?.city}</p>
-            </div>
-          )}
-          {edit ? (
-            <div className="input">
-              <h4>{t("country")}</h4>
-              <input
-                type="text"
-                placeholder={t("country")}
-                name="country"
-                value={update.country}
-                onChange={handleChange}
-                required
-              />
-            </div>
-          ) : (
-            <div className="input">
-              <h4>{t("country")}</h4>
-              <p>{user?.country}</p>
-            </div>
-          )}
+          </div>  
           <div className="seller-main-info-btn">
             {edit ? (
               <>

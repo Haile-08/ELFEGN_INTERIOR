@@ -1,12 +1,12 @@
 const User = require("../models/user.models");
-const Room = require("../models/rooms.models");
 const jwt = require("jsonwebtoken");
 
 const handleUpdateUser = async (req, res) => {
   try {
     const { id } = req.params;
-    const { firstName, lastName, phone_number, city, country } = req.body;
+    const { firstName, lastName, phoneNumber} = req.body;
     const user = await User.findById(id);
+    console.log("phone number", phoneNumber)
 
     if (!user) {
       return res.status(404).json({ error: "User not found" });
@@ -14,16 +14,15 @@ const handleUpdateUser = async (req, res) => {
 
     if (firstName !== "") user.firstName = firstName;
     if (lastName !== "") user.lastName = lastName;
-    if (phone_number !== "") user.phone_number = phone_number;
-    if (city !== "") user.city = city;
-    if (country !== "") user.country = country;
-    user.save();
+    if (phoneNumber !== "") user.phoneNumber = phoneNumber;
+    
+    await user.save();
     res
       .status(201)
       .json({ message: "User logged in successfully", success: true, user });
   } catch (err) {
     res.status(500).json({ error: err.message });
-  }
+  } 
 };
 
 const handleimageUpload = async (req, res) => {
@@ -32,6 +31,8 @@ const handleimageUpload = async (req, res) => {
     const { path } = req.file;
 
     const user = await User.findOne({ email });
+    console.log("email", email);
+    console.log("path", path)
 
     user.image = path;
 
@@ -47,10 +48,10 @@ const handleimageUpload = async (req, res) => {
 const handleFetchUser = async (req, res) => {
   try {
     const id = req.params.id;
-    const blog = await User.findById(id);
+    const user = await User.findById(id);
     res
       .status(201)
-      .json({ message: "blog fetched successfully", success: true, blog });
+      .json({ message: "user fetched successfully", success: true, user });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

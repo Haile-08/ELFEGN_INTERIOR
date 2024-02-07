@@ -4,8 +4,9 @@ const {
   handleOrderVerification,
   handleOrderGet,
   handleOrderGetPaginate,
-  handleOrderApprove,
-  handleOrderDelete,
+  handlePendingOrderGetPaginate,
+  handleDeliveredOrderGetPaginate,
+  handleApproveDelivery,
 } = require("../../controller/order.controller");
 const buyerAuth = require("../../middleware/buyerAuth");
 
@@ -15,6 +16,8 @@ router.post("/create", handleOrderCreate);
 router.post("/verify", handleOrderVerification);
 router.get("/get", handleOrderGet);
 router.get("/getpagenated", handleOrderGetPaginate);
-router.post("/approve", buyerAuth, handleOrderApprove);
-router.delete("/delete/:id", buyerAuth, handleOrderDelete);
+router.get("/getpendingpagenated", handlePendingOrderGetPaginate);
+router.get("/getdeliveredpagenated/", handleDeliveredOrderGetPaginate);
+router.get("/deliver/:id", handleApproveDelivery);
+
 module.exports = router;

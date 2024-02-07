@@ -7,15 +7,15 @@ import telegram from "../../../assets/telegram.png";
 import facebook from "../../../assets/facebook.png";
 import instagram from "../../../assets/instagram.png";
 import { useQuery } from "react-query";
-import { getAllGifts } from "../../../hooks/giftHook";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { getAllProduct } from "../../../hooks/productHook";
 
 function HomeGiftPage() {
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const gifts = useQuery(["gift"], getAllGifts);
+  const product = useQuery(["product"], getAllProduct);
 
   const handleSearchNav = (id: string) => {
     navigate(`/giftpage/${id}`);
@@ -50,7 +50,7 @@ function HomeGiftPage() {
           </div>
         </div>
         <div className="gift-landing-page">
-          {gifts?.data?.gifts.slice(0, 6).map((gift: any, index: number) => (
+          {product?.data?.slice(0, 6).map((gift: any, index: number) => (
             <motion.div
               className="gift-landing-page-gift"
               whileHover={{ scale: 1.07 }}
@@ -61,7 +61,7 @@ function HomeGiftPage() {
               <div className="gift-landing-page-image">
                 <img
                   src={
-                    "https://merita.onrender.com" + gift.gift_image.substring(6)
+                    "http://localhost:5000/" + gift.image.substring(6)
                   }
                   alt="image"
                   crossOrigin="anonymous"
@@ -69,18 +69,18 @@ function HomeGiftPage() {
               </div>
               <div className="gift-landing-page-info">
                 <div className="gift-landing-page-info-name">
-                  {gift.gift_name}
+                  {gift.name}
                 </div>
                 <div className="gift-landing-page-info-stars">
                   {Array.from(
-                    { length: gift.gift_star },
+                    { length: gift.star },
                     (_, index: number) => index
                   ).map(() => (
                     <img src={star} alt="star" />
                   ))}
                 </div>
                 <div className="gift-landing-page-info-price">
-                  {gift.gift_price} birr
+                  {gift.price} birr
                 </div>
               </div>
             </motion.div>

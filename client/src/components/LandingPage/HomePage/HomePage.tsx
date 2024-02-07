@@ -13,14 +13,17 @@ import { getAllGifts } from "../../../hooks/giftHook";
 import { useQuery } from "react-query";
 import { useTranslation } from "react-i18next";
 import { MdOutlineLanguage } from "react-icons/md";
+import { getAllProduct } from "../../../hooks/productHook";
 
 function HomePage() {
   const navigate = useNavigate();
   const [searchModal, setSearchModal] = useState(false);
   const [loading, setLoading] = useState(true);
   const [searchString, setSearchString] = useState();
-  const gifts = useQuery(["gift"], getAllGifts);
+  const product = useQuery(["product"], getAllProduct);
   const { t, i18n } = useTranslation();
+
+  console.log("products", product.data)
 
   const startsWith = (str: any) => (word: any) =>
     str ? word.slice(0, str.length).toLowerCase() === str.toLowerCase() : false;
@@ -115,11 +118,11 @@ function HomePage() {
                 </form>
               </div>
               <div className="search-res-list">
-                {gifts?.data?.gifts
-                  .sort((a: any, b: any) => b.gift_star - a.gift_star)
+                {product?.data
+                  ?.sort((a: any, b: any) => b.star - a.star)
                   .slice(0, 4)
                   ?.filter((gift: any) =>
-                    startsWith(searchString)(gift.gift_name)
+                    startsWith(searchString)(gift.name)
                   )
                   .map((gift: any, index: number) => (
                     <div
@@ -130,8 +133,8 @@ function HomePage() {
                       <div className="search-modal-input-res-image">
                         <img
                           src={
-                            "https://merita.onrender.com" +
-                            gift.gift_image.substring(6)
+                            "http://localhost:5000/" +
+                            gift.image.substring(6)
                           }
                           alt="image"
                           crossOrigin="anonymous"
@@ -139,10 +142,10 @@ function HomePage() {
                       </div>
                       <div className="search-modal-input-info">
                         <div className="search-modal-input-info-gift-name">
-                          {gift.gift_name}
+                          {gift.name}
                         </div>
                         <div className="search-modal-input-info-gift-price">
-                          {gift.gift_price}birr
+                          {gift.price}birr
                         </div>
                       </div>
                     </div>
