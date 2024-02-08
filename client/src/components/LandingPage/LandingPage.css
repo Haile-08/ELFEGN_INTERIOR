@@ -13,7 +13,7 @@ body {
 .landing-page {
     width: 100dvw;
     height: 100dvh;
-    background-image: url("../../assets/bg-blur.png");
+    background-color: #ff6348;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

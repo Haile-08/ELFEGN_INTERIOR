@@ -39,9 +39,9 @@ i18n.use(initReactI18next).init({
 
         //HomePage
         homeWelcome:
-          "Welcome to the best place to buy and sell gifts for you and your loved ones. Discover a wide selection of unique items that will make any occasion special.",
-        homeIntro: "Buy and Sell Gifts",
-        homeTxtGift: "Gifts",
+          "Welcome to the best place to buy Furniture for you and your loved ones. Discover a wide selection of unique items that will make any occasion special.",
+        homeIntro: "Buy one",
+        homeTxtGift: "Furniture",
         homeTxtTestimonials: "Testimonials",
         homeTxtSignup: "Join",
         homeTxtSignin: "Login",
@@ -228,9 +228,9 @@ i18n.use(initReactI18next).init({
 
         //HomePage
         homeWelcome:
-          "ለእርስዎ እና ለሚወዷቸው ሰዎች ስጦታዎችን ለመግዛት እና ለመሸጥ ወደሚመች ቦታ እንኳን በደህና መጡ። ማንኛውንም አጋጣሚ ልዩ የሚያደርጉትን ሰፊ የልዩ ዕቃዎች ምርጫን ያግኙ።",
-        homeIntro: "ስጦታዎች ይግዙ እና ይሽጡ",
-        homeTxtGift: "ስጦታዎች",
+          "ለእርስዎ እና ለሚወዷቸው ሰዎች የቤት ዕቃዎች ለመግዛት እና ለመሸጥ ወደሚመች ቦታ እንኳን በደህና መጡ። ማንኛውንም አጋጣሚ ልዩ የሚያደርጉትን ሰፊ የልዩ ዕቃዎች ምርጫን ያግኙ።",
+        homeIntro: "የቤት ዕቃዎች",
+        homeTxtGift: "የቤት ዕቃዎች",
         homeTxtTestimonials: "ምስክርነቶች",
         homeTxtSignup: "ተመዝገቢ",
         homeTxtSignin: "ግባ",

@@ -24,11 +24,11 @@
     flex-direction: column;
     font-family: 'Lato', sans-serif;
     color: #ffffff;
-    background-color: #cf6a87;
+    background-color: #ff6348;
 }
 
 .sigup-user .signup-side-bar img {
-    width: 25dvw;
+    width: 10dvw;
     cursor: pointer;
 }
 .sigup-user .signup-side-bar h1 {

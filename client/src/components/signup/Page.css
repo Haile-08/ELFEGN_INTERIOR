@@ -67,7 +67,7 @@
     color: #f0f2f5;
     font-size: 20px;
     font-family: 'Lato', sans-serif;
-    background-color: #cf6a87;
+    background-color: #ff6348;
 }
 
 .page-one .forget-password {
@@ -322,7 +322,7 @@
         color: #f0f2f5;
         font-size: 20px;
         font-family: 'Lato', sans-serif;
-        background-color: #cf6a87;
+        background-color: #ff6348;
     }
     .page-one .page-one-button {
         width: 60dvw;
@@ -452,5 +452,48 @@
     .page-one .page-one-input .account-type-box-choice  button img{
         width: 10dvw;
         margin-right: 10px;
+    }
+    .page-one .page-one-button {
+        width: 78dvw;
+        height: 20dvh;
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+        padding-right: 5dvw;
+    }
+    .page-one .page-one-button button {
+        width: 90dvw;
+        height: 5dvh;
+        border: 5px;
+        outline: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        margin: 0px 20px;
+        font-family: 'Lato', sans-serif;
+        border: 1px solid #000;
+        border-radius: 10px;
+        background-color: #fff;
+        cursor: pointer;
+    }
+    .page-one .page-one-button {
+        width: 40dvw;
+        height: 20dvh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-right: 0dvw;
+    }
+    .page-one .page-one-title {
+        width: 70dvw;
+        height: 6dvh;
+        font-size: 25px;
+        display: flex;
+        align-items: center;
+        padding: 50px 0px;
+        justify-content: space-between;
+        font-family: 'Lato', sans-serif;
+        margin-right: 5dvw;
     }
 }

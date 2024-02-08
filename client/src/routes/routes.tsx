@@ -17,7 +17,6 @@ import {
   BuyerShop,
   Dashboard,
   GiftPage,
-  HomeAboutPage,
   HomeBlogsPage,
   HomeGiftPage,
   HomePage,
@@ -82,10 +81,7 @@ function Routes() {
           path: "/blogs",
           element: <HomeBlogsPage />,
         },
-        {
-          path: "/about",
-          element: <HomeAboutPage />,
-        },
+        
       ],
     },
     {

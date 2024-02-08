@@ -29,6 +29,5 @@ export { default as HomePage } from "../components/LandingPage/HomePage/HomePage
 export { default as HomeGiftPage } from "./LandingPage/HomeGiftPage/HomeGiftPage";
 export { default as HomeTestimonialPage } from "./LandingPage/HomeTestimonialPage/HomeTestimonialPage";
 export { default as HomeBlogsPage } from "./LandingPage/HomeBlogsPage/HomeBlogsPage";
-export { default as HomeAboutPage } from "./LandingPage/HomeAboutPage/HomeAboutPage";
 export { default as Request } from "./signup/Resuest/Request";
 export { default as Reset } from "./signup/Reset/Reset";

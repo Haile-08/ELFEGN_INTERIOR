@@ -162,7 +162,7 @@ function SignIn() {
       </AnimatePresence>
       <div className="signup-side-bar">
         <img
-          src={t("logo") === "eng" ? logo : amhlogo}
+          src={logo}
           alt="logo"
           onClick={() => navigate("/")}
         />

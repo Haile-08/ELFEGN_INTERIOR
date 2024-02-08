@@ -1,10 +1,11 @@
 import "./HomePage.css";
 import logo from "../../../assets/logo.svg";
-import amhlogo from "../../../assets/amhlogo.svg";
+import chair from "../../../assets/chair.png"
 import search from "../../../assets/search.png";
 import telegram from "../../../assets/telegram.png";
-import facebook from "../../../assets/facebook.png";
 import instagram from "../../../assets/instagram.png";
+import tiktok from "../../../assets/tiktok.png";
+import youtube from "../../../assets/youtube.png";
 import close from "../../../assets/close.png";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
@@ -22,6 +23,7 @@ function HomePage() {
   const { t, i18n } = useTranslation();
 
   const product = useQuery(["product"], getAllProduct);
+  console.log(product)
 
   const startsWith = (str: any) => (word: any) =>
     str ? word.slice(0, str.length).toLowerCase() === str.toLowerCase() : false;
@@ -155,25 +157,21 @@ function HomePage() {
         )}
       </AnimatePresence>
       <div className="home-page-side">
+        <img
+            src={ logo }
+            alt="logo"
+            onClick={() => navigate("/home")}
+          />
         <div className="home-page-side-info">
           <p onClick={() => navigate("/gift")}>{t("homeTxtGift")}</p>
           <p onClick={() => navigate("/testimonial")}>
             {t("homeTxtTestimonials")}
           </p>
         </div>
-        <div className="home-page-side-social">
-          <img src={telegram} alt="telegram" />
-          <img src={facebook} alt="facebook" />
-          <img src={instagram} alt="instagram" className="instagram" />
-        </div>
       </div>
       <div className="home-page-home">
         <div className="home-page-home-nav">
-          <img
-            src={t("logo") === "eng" ? logo : amhlogo}
-            alt="logo"
-            onClick={() => navigate("/home")}
-          />
+          
           <div className="nav-center">
             <p onClick={() => navigate("/account/page/1")}>
               {t("homeTxtSignup")}
@@ -189,9 +187,7 @@ function HomePage() {
               alt="search"
               onClick={() => setSearchModal(!searchModal)}
             />
-            <div className="contact" onClick={() => navigate("/about")}>
-              {t("homeTxtAbout")}
-            </div>
+            
             <div className="language">
               <select value={i18n.language} onChange={onChangeLang}>
                 <option value="eng">English</option>
@@ -202,10 +198,25 @@ function HomePage() {
           </div>
         </div>
         <div className="home-page-home-info">
+          <div className="info">
           <h1>{t("homeIntro")}</h1>
           <p>{t("homeWelcome")}</p>
           <button onClick={() => navigate("/gift")}>{t("homeTxtShop")}</button>
+          </div>
+          <div className="glass">
+            <div className="morph">
+              <img src={chair} alt="item" />
+            </div>
+          </div>
         </div>
+        <div className="home-social">
+          <div className="home-page-side-social">
+          <img src={telegram} alt="telegram" />
+          <img src={instagram} alt="instagram"/>
+          <img src={tiktok} alt="tiktok" />
+          <img src={youtube} alt="youtube" />
+        </div> 
+          </div>
       </div>
     </motion.div>
   );

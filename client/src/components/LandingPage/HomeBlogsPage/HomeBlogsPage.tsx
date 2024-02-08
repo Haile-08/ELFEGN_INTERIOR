@@ -1,10 +1,10 @@
 import "../HomeGiftPage/HomeGiftPage";
 import { motion } from "framer-motion";
 import telegram from "../../../assets/telegram.png";
-import facebook from "../../../assets/facebook.png";
+import tiktok from "../../../assets/tiktok.png";
+import youtube from "../../../assets/youtube.png";
 import instagram from "../../../assets/instagram.png";
 import logo from "../../../assets/logo.svg";
-import amhlogo from "../../../assets/amhlogo.svg";
 import back from "../../../assets/back-icon.png";
 import { useNavigate } from "react-router-dom";
 import { retrieveBlogs } from "../../../hooks/blogHook";
@@ -50,19 +50,20 @@ function HomeBlogsPage() {
       transition={{ delay: 0.2, duration: 0.5, type: "tween" }}
     >
       <div className="home-gift-side">
+          <img
+            src={logo}
+            alt="logo"
+            onClick={() => navigate("/")}
+          />
         <div className="home-gift-side-social">
           <img src={telegram} alt="telegram" />
-          <img src={facebook} alt="facebook" />
-          <img src={instagram} alt="instagram" className="instagram" />
+          <img src={instagram} alt="instagram"/>
+          <img src={tiktok} alt="tiktok" />
+          <img src={youtube} alt="youtube" />
         </div>
       </div>
       <div className="home-gift-home">
         <div className="home-gift-home-nav">
-          <img
-            src={t("logo") === "eng" ? logo : amhlogo}
-            alt="logo"
-            onClick={() => navigate("/")}
-          />
           <div className="nav-center">
             <p>{t("homeTxtBlog")}</p>
           </div>

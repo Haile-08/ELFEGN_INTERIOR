@@ -1,7 +1,6 @@
 import { Outlet, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import logo from "../../assets/logo.svg";
-import amhlogo from "../../assets/amhlogo.svg";
 import google from "../../assets/google-login.png";
 import "./Signup.css";
 import { useTranslation } from "react-i18next";
@@ -22,7 +21,7 @@ function Signup() {
       </AnimatePresence>
       <div className="signup-side-bar">
         <img
-          src={t("logo") === "eng" ? logo : amhlogo}
+          src={logo}
           alt="logo"
           onClick={() => navigate("/")}
         />
