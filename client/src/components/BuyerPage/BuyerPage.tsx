@@ -418,7 +418,7 @@ function BuyerPage() {
                 </div>
                 <div className="buyer-sidebar-nav">
                   <div className="buyer-sidebar-nav-logo">
-                    <img src={t("logo") === "eng" ? logo : amhlogo} alt="logo" onClick={() => navigate("/")} />
+                    <img src={logo} alt="logo" onClick={() => navigate("/")} />
                   </div>
                   <div className="buyer-sidebar-nav-plus">
                     <div
@@ -438,7 +438,6 @@ function BuyerPage() {
                         <option value="eng">English</option>
                         <option value="amh">አማርኛ</option>
                       </select>
-                      <MdOutlineLanguage className="lang-icon" />
                     </div>
                     <button onClick={() => navigate("/buyerpage/profile")}>
                       <img src={profile} alt="profile" />
@@ -490,7 +489,7 @@ function BuyerPage() {
               >
                 <div className="buyer-sidebar-nav-logo">
                   <img
-                    src={t("logo") === "eng" ? logo : amhlogo}
+                    src={logo}
                     alt="logo"
                     onClick={() => navigate("/")}
                   />

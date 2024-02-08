@@ -87,7 +87,7 @@
     font-weight: 700;
     color: white;
     cursor: pointer;
-    background-color: #c44569;
+    background-color: #ff6348;
     display: inline-block;
     font-family: 'Lato', sans-serif;
     display: flex;
@@ -200,7 +200,7 @@
 }
 
 .save-btn{
-    background-color: #c44569;
+    background-color: #ff6348;
     color: #ffffff;
 }
 
@@ -280,7 +280,7 @@
         font-weight: 700;
         color: white;
         cursor: pointer;
-        background-color: #c44569;
+        background-color: #ff6348;
         display: inline-block;
         font-family: 'Lato', sans-serif;
         display: flex;

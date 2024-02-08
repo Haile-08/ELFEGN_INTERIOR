@@ -8,11 +8,13 @@
 }
 
 .buyer-gift-list-items-all {
-    width: 80dvw;
+    width: 85dvw;
     height: 90dvh;
+    margin-left: 10dvw;
     display: flex;
     flex-wrap: wrap;
     padding: 40px;
+    overflow-y: auto;
 }
 
 .buyer-gift-card {
@@ -92,16 +94,17 @@
 
 @media screen and (max-width: 600px) {
     .buyer-gift-list-items-all {
-        width: 90dvw;
-        height: 60dvh;
+        width: 80dvw;
+        height: 80dvh;
         display: flex;
         justify-content: center;
         align-items: flex-start;
         flex-wrap: wrap;
         padding: 0px;
+        overflow-y: auto;
     }
     .buyer-gift-card {
-        width: 25dvw;
+        width: 35dvw;
         height: 18dvh;
         margin: 1dvw;
         display: flex;
