@@ -4,20 +4,19 @@ const {
   handleOrderVerification,
   handleOrderGet,
   handleOrderGetPaginate,
-  handlePendingOrderGetPaginate,
-  handleDeliveredOrderGetPaginate,
-  handleApproveDelivery,
 } = require("../../controller/order.controller");
-const buyerAuth = require("../../middleware/buyerAuth");
+const userAuth = require("../../middleware/userAuth");
 
 const router = express.Router();
 
+//taken
 router.post("/create", handleOrderCreate);
+//taken
 router.post("/verify", handleOrderVerification);
+//taken
 router.get("/get", handleOrderGet);
-router.get("/getpagenated", handleOrderGetPaginate);
-router.get("/getpendingpagenated", handlePendingOrderGetPaginate);
-router.get("/getdeliveredpagenated/", handleDeliveredOrderGetPaginate);
-router.get("/deliver/:id", handleApproveDelivery);
+//taken
+router.get("/getpagenated", userAuth, handleOrderGetPaginate);
+
 
 module.exports = router;

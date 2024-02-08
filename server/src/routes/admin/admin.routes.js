@@ -13,19 +13,15 @@ const {
 
 const {
   handleAdminLogin,
-  handleAdminDeleteAGift,
-  handleAdminGetAllGifts,
   handleProductPost,
   handleGetProducts,
   handleProductDelete,
   handleDashBoardCount,
 } = require("../../controller/admin.controller");
 
-const {
-  handleOrderGet,
-} = require("../../controller/order.controller");
 
 const adminauthCheck = require("../../middleware/adminauth");
+const { handleOrderVerification, handleDeliveredOrderGetPaginate, handleApproveDelivery, handlePendingOrderGetPaginate } = require("../../controller/order.controller");
 
 const productStorage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -61,34 +57,47 @@ const router = express.Router();
 
 
 //Auth
+//taken
 router.post("/auth/login", handleAdminLogin);
 
 //Products
+//taken
 router.post("/product/post", productUpload.single("image"), adminauthCheck, handleProductPost)
-router.get("/products", handleGetProducts);
+//taken
+router.get("/products", adminauthCheck, handleGetProducts);
+//taken
 router.delete("/delete/:id", adminauthCheck, handleProductDelete);
 
 
-///////////////////////////////////////////
+//taken
+router.post("/verify", handleOrderVerification);
+
+//taken
+router.get("/getdeliveredpagenated/",adminauthCheck, handleDeliveredOrderGetPaginate);
+//taken
+router.get("/deliver/:id", adminauthCheck, handleApproveDelivery);
+
+//taken
+router.get("/getpendingpagenated",adminauthCheck,  handlePendingOrderGetPaginate);
+
 // Admin Blog
+//taken
 router.post(
   "/blog/post",
   blogUpload.single("image"),
   adminauthCheck,
   handleBlogCreation
 );
+//taken
 router.get("/blog/get", adminauthCheck, handleBlogRetrieve);
+//taken
 router.delete("/blog/delete/:id", adminauthCheck, handleRemoveABlog);
+//taken
 router.get("/blog/get/comment/:id", adminauthCheck, handleCommentRetrieve);
+//taken
 router.delete("/blog/delete/comment/:id", adminauthCheck, handleCommentDelete);
 
-// Admin Gift
-router.get("/gift/get/all", adminauthCheck, handleAdminGetAllGifts);
-router.delete("/gift/delete/:id", adminauthCheck, handleAdminDeleteAGift);
-
-//Admin Orders
-
-router.get("/order/get/all", adminauthCheck, handleOrderGet);
-router.get("/count", handleDashBoardCount)
+//taken
+router.get("/count", adminauthCheck,  handleDashBoardCount)
 
 module.exports = router;

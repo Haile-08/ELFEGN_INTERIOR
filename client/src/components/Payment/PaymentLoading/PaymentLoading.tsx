@@ -16,23 +16,19 @@ function PaymentLoading() {
       if (data.paid) {
         navigate("/buyerpage/payment/success");
       } else {
-        navigate("buyerpage/payment/failure");
+        console.log("else error")
+        navigate("/buyerpage/payment/failure");
       }
     },
     onError: () => {
-      navigate("buyerpage/payment/failure");
+      console.log("usemutaion error")
+      navigate("/buyerpage/payment/failure");
     },
   });
   useEffect(() => {
-    console.log(data);
+    console.log("text refereance is there", tx_ref);
     mutate({ tx_ref });
-    data?.map((item: any) => {
-      if (item.OrderActive === false) {
-        console.log(item.tx_ref);
-        mutate({ tx_ref: item.tx_ref });
-      }
-    });
-  }, [mutate, data]);
+  }, [mutate]);
   return (
     <div className="payment-loading">
       <div className="payment-verify-loader"></div>

@@ -19,7 +19,6 @@ import { MdOutlineLanguage } from "react-icons/md";
 
 function BuyerPage() {
   const [modal, setModal] = useState(false);
-  const [priceTag, setPriceTag] = useState("all");
   const [dateTag, setDateTag] = useState("all");
   const [starTag, setStarTag] = useState("all");
   const [categoryTag, setCategoryTag] = useState("all");
@@ -37,16 +36,16 @@ function BuyerPage() {
   });
 
   interface Item {
-    gift_price: number;
-    gift_date: string;
-    gift_star: number;
-    gift_category: string;
+    price: number;
+    date: string;
+    star: number;
+    category: string;
     // Other properties of the item object
   }
 
   const checkDate = (item: Item) => {
     const dateToday = new Date();
-    const giftDate = new Date(item.gift_date);
+    const giftDate = new Date(item.date);
     if (dateTag === "all") {
       return true;
     } else if (dateTag === "less-than-24") {
@@ -86,15 +85,15 @@ function BuyerPage() {
     if (starTag === "all") {
       return true;
     } else if (starTag === "star-5") {
-      return item.gift_star == 5;
+      return item.star == 5;
     } else if (starTag === "star-4") {
-      return item.gift_star == 4;
+      return item.star == 4;
     } else if (starTag === "star-3") {
-      return item.gift_star == 3;
+      return item.star == 3;
     } else if (starTag === "star-2") {
-      return item.gift_star == 2;
+      return item.star == 2;
     } else if (starTag === "star-1") {
-      return item.gift_star == 1;
+      return item.star == 1;
     } else {
       return true;
     }
@@ -103,16 +102,22 @@ function BuyerPage() {
   const checkCategory = (item: Item) => {
     if (categoryTag === "all") {
       return true;
-    } else if (categoryTag === "Personalized") {
-      return item.gift_category === "Personalized";
-    } else if (categoryTag === "Home Décor") {
-      return item.gift_category === "Home Décor";
-    } else if (categoryTag === "Tech Gadgets") {
-      return item.gift_category === "Tech Gadgets";
-    } else if (categoryTag === "Fashion") {
-      return item.gift_category === "Fashion";
+    } else if (categoryTag === "Sofabed") {
+      return item.category === "Sofabed";
+    } else if (categoryTag === "CoffeeTable") {
+      return item.category === "CoffeeTable";
+    } else if (categoryTag === "KitchenCabinate") {
+      return item.category === "KitchenCabinate";
+    } else if (categoryTag === "DiningTable") {
+      return item.category === "DiningTable";
+    } else if (categoryTag === "WellBed") {
+      return item.category === "WellBed";
+    } else if (categoryTag === "NormalBeds") {
+      return item.category === "NormalBeds";
+    } else if (categoryTag === "DressingTable") {
+      return item.category === "DressingTable";
     } else if (categoryTag === "others") {
-      return item.gift_category === "others";
+      return item.category === "others";
     } else {
       return true;
     }
@@ -315,7 +320,7 @@ function BuyerPage() {
                         name="category"
                         onChange={(e) => {
                           e.preventDefault;
-                          setCategoryTag("Personalized");
+                          setCategoryTag("Sofabed");
                         }}
                       />
                       <p>{t("giftCategory1")}</p>
@@ -326,7 +331,7 @@ function BuyerPage() {
                         name="category"
                         onChange={(e) => {
                           e.preventDefault;
-                          setCategoryTag("Home Décor");
+                          setCategoryTag("CoffeeTable");
                         }}
                       />
                       <p>{t("giftCategory2")}</p>
@@ -337,7 +342,7 @@ function BuyerPage() {
                         name="category"
                         onChange={(e) => {
                           e.preventDefault;
-                          setCategoryTag("Tech Gadgets");
+                          setCategoryTag("KitchenCabinate");
                         }}
                       />
                       <p>{t("giftCategory3")}</p>
@@ -349,7 +354,18 @@ function BuyerPage() {
                         name="category"
                         onChange={(e) => {
                           e.preventDefault;
-                          setCategoryTag("Fashion");
+                          setCategoryTag("DiningTable");
+                        }}
+                      />
+                      <p>{t("giftCategory4")}</p>
+                    </div>
+                    <div className="category-tag">
+                      <input
+                        type="radio"
+                        name="category"
+                        onChange={(e) => {
+                          e.preventDefault;
+                          setCategoryTag("WellBed");
                         }}
                       />
                       <p>{t("giftCategory5")}</p>
@@ -360,10 +376,32 @@ function BuyerPage() {
                         name="category"
                         onChange={(e) => {
                           e.preventDefault;
-                          setCategoryTag("others");
+                          setCategoryTag("NormalBeds");
                         }}
                       />
                       <p>{t("giftCategory6")}</p>
+                    </div>
+                    <div className="category-tag">
+                      <input
+                        type="radio"
+                        name="category"
+                        onChange={(e) => {
+                          e.preventDefault;
+                          setCategoryTag("DressingTable");
+                        }}
+                      />
+                      <p>{t("giftCategory7")}</p>
+                    </div>
+                    <div className="category-tag">
+                      <input
+                        type="radio"
+                        name="category"
+                        onChange={(e) => {
+                          e.preventDefault;
+                          setCategoryTag("others");
+                        }}
+                      />
+                      <p>{t("giftCategory8")}</p>
                     </div>
                     <div className="category-tag">
                       <input

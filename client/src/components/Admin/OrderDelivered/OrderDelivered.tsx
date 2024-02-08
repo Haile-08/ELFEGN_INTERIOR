@@ -1,27 +1,27 @@
-import "../OrderPending/OrderPending.css"
-import { useSelector } from "react-redux";
+import "../OrderPending/OrderPending.css";
 import { useMutation, useQuery } from "react-query";
-import { getDeliveredOrderPaginate, verifyPayment } from "../../../hooks/orderHook";
+import { getDeliveredOrderPaginate, verifyPayment } from "../../../hooks/adminHook";
 import { useEffect, useState } from "react";
 
 function OrderDelivered() {
   const [page, setPage] = useState(0);
-  const [verifyLoading, setVerifyLoading] = useState(false);
-  const user = useSelector((state: any) => state.auth.user);
-  const token = useSelector((state: any) => state.auth.userToken);
+  const [verifyLoading, setVerifyLoading] = useState(null);
 
   const { isLoading, data, isPreviousData, refetch } = useQuery({
     queryKey: ["order", page],
     // @ts-ignore
-    queryFn: () => getDeliveredOrderPaginate({ page: page, id: user?._id }),
+    queryFn: () => getDeliveredOrderPaginate({ page: page, token }),
     keepPreviousData: true,
   });
 
+  console.log("order data", data)
+
   const payment = useMutation(verifyPayment, {
     onSuccess: (data) => {
+      refetch();
       console.log("payement data", data);
       if (data.paid){
-        setVerifyLoading(false);
+        setVerifyLoading(null);
       }
     },
     onError: () => {
@@ -31,11 +31,11 @@ function OrderDelivered() {
 
   useEffect(() => {
     refetch();
-  }, []);
+  }, [data]);
 
-  const handleOrderVerify = (data: any) => {
+  const handleOrderVerify = (data: any, id: any) => {
     payment.mutate({tx_ref: data});
-    setVerifyLoading(true);
+    setVerifyLoading(id);
     refetch()
   }
 
@@ -67,7 +67,7 @@ function OrderDelivered() {
                 <div className="order-space">
                   <p>{order.OrderDate}</p>
                   {order.Delivered? <div className="stat-delivered">Delivered</div>: <div className="stat-pending"> Delivery Pending</div>}
-                  {order.PayemntVerify? <div className="stat-delivered">Payment Verifyied</div>: verifyLoading?  <button className="btn-loading"><div className="buyer-loader-green"></div></button> :<button onClick={()=> handleOrderVerify(order.tx_ref)} className="btn-verify">Verify Payment</button>}
+                  {order.PayemntVerify? <div className="stat-delivered">Payment Verifyied</div>: verifyLoading === order._id?  <button className="btn-loading"><div className="buyer-loader-green"></div></button> :<button onClick={()=> handleOrderVerify(order.tx_ref, order._id)} className="btn-verify">Verify Payment</button>}
                   <div className="stat-delivered">Delivered</div>
                 </div>
               </div>

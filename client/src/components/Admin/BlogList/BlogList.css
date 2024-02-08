@@ -154,12 +154,24 @@
 }
 
 @media screen and (max-width: 600px) {
+    .blogs .blog-list {
+        width: 70dvw;
+        height: 80dvh;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        flex-direction: column;
+    }
     .blogs .blog-list .blog-card {
-        width: 80dvw;
-        height: 10dvh;
+        width: 70dvw;
+        height: 30dvh;
         display: flex;
         margin-bottom: 10dvh;
-        flex-direction: row;
+        flex-direction: column ;
+        justify-content: center;
+        align-items: center;
         cursor: pointer;
         font-family: 'Lato', sans-serif;
         background-color: #f1f2f6;
@@ -167,19 +179,25 @@
     .blogs .blog-list .blog-card-img img{
         height: 10dvh;
     }
-    .blog-card-text {
+    .blogs .blog-list .blog-card-text {
         display: flex;
         flex-direction: column;
-        width: 20dvw;
+        align-items: center;
+        justify-content: center;
+        width: 50dvw;
         height: 10dvh;
         padding: 0;
         font-family: 'Lato', sans-serif;
     }
-    .blog-card-text h2 {
-        width: 25dvw;
+    .blogs .blog-list  .blog-card-text h2 {
+        width: 60dvw;
         height: 5dvh;
         padding: 0;
         margin: 0;
+        font-size: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .blogs .blog-list .blog-card-text .blog-card-info {
@@ -211,15 +229,15 @@
         display: none;
     }
     .blogs .blog-list .blog-card-button {
-        width: 20dvw;
+        width: 40dvw;
         height: 10dvh;
         display: flex;
         align-items: center;
         justify-content: center;
     }
     .blogs .blog-list .blog-card-button button{
-        width: 13dvw;
-        height: 3dvh;
+        width: 35dvw;
+        height: 7dvh;
         outline: none;
         border: none;
         color: #ffffff;
@@ -229,5 +247,43 @@
         font-size: 10px;
         cursor: pointer;
         margin-top: 2dvh;
+    }
+    .blogs .nav-btn button{
+        width: 20dvw;
+        height: 5dvh;
+        outline: none;
+        border: none;
+        cursor: pointer;
+        color: #fff;
+        border-radius: 2px;
+        background-color: #c44569;
+    }
+    
+    .blogs .nav-btn button:disabled{
+        width: 20dvw;
+        height: 5dvh;
+        outline: none;
+        border: none;
+        cursor: pointer;
+        color: #000000;
+        border: 1px solid #000;
+        border-radius: 2px;
+        background-color:transparent;
+    }
+    .blogs {
+        width: 70vw;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-direction: column;
+        overflow-x: hidden;
+    }
+    .blogs .nav-btn {
+        width: 90dvw;
+        height: 10dvh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 }

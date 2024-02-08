@@ -49,8 +49,8 @@
     -webkit-mask-composite: source-out;
             mask-composite: subtract;
     animation: l3 1s infinite linear;
-  }
-  @keyframes l3 {to{transform: rotate(1turn)}}
+}
+@keyframes l3 {to{transform: rotate(1turn)}}
 
 
 .gift-list .gift-list-scroll {
@@ -170,6 +170,24 @@
 }
 
 @media screen and (max-width: 600px) {
+    .product-list {
+        width: 80dvw;
+        height: 100dvh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        scroll-behavior: none;
+        overflow-x: hidden;
+    }
+    
+    .product-list-title {
+        width: 70dvw;
+        height: 8dvh;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }    
     .nav-btn {
         width: 80dvw;
         height: 10dvh;
@@ -221,8 +239,8 @@
 }
 .gift-list .gift-list-scroll .gift-item .gift-item-info {
     height: 20dvh;
-    width: 25dvw;
-    margin-left: 10px;
+    width: 20dvw;
+    margin-left: 5px;
     font-size: 10px;
     font-family: 'Lato', sans-serif;
 }
@@ -231,9 +249,10 @@
     width: 20dvw;
     font-size: 10px;
     font-family: 'Lato', sans-serif;
+    word-wrap: break-word;  
 }
 .gift-list .gift-list-scroll {
-    width: 95dvw;
+    width: 80dvw;
     height: 75dvh;
     overflow-y: scroll;
     overflow-x: hidden;
@@ -243,7 +262,7 @@
     flex-direction: column;
 }
 .gift-list .gift-list-scroll .gift-item{
-    width: 90dvw;
+    width: 75dvw;
     height: 20dvh;
     display: flex;
     align-items: center;
@@ -253,9 +272,9 @@
 }
 .gift-list .gift-list-scroll .gift-item .gift-item-delete-btn{
     height: 20dvh;
-    width: 30dvw;
+    width: 25dvw;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
     font-size: 22px;
     font-family: 'Lato', sans-serif;
@@ -263,11 +282,16 @@
 .gift-list .gift-list-scroll .gift-item .gift-item-delete-btn button{
     outline: none;
     border: none;
-    width: 20dvw;
+    width: 15dvw;
     height: 5dvh;
     color: #fff;
     cursor: pointer;
     background-color: #cf6a87;
     font-family: 'Lato', sans-serif;
+}
+.product-list .patginate-product .nav-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 }

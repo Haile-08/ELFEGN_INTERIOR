@@ -20,12 +20,13 @@
     width: 80dvw;
     height: 20dvh;
     margin: 5dvh;
+    padding: 1dvh;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     font-family: 'Lato', sans-serif;
-    background-color: #f1f2f6;
+    background-color: #ffffff;
 }
 
 .buyer-order .buyer-order-list .buyer-order-item .order-space{
@@ -106,6 +107,7 @@
     border: none;
     cursor: pointer;
     color: #fff;
+    margin: 0.3dvh 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -171,73 +173,138 @@
 }
 
 @media screen and (max-width: 600px) {
-    .buyer-order .buyer-order-list .buyer-order-item .buyer-order-item-right {
-        display: none;
-    }
-    .buyer-order .buyer-order-list .buyer-order-item .buyer-order-item-left{
-        display: none;
-    }
-    .buyer-order .buyer-order-list {
-        width: 90dvw;
-        height: 90dvh;
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        flex-direction: column;
-    }
-    .buyer-order .buyer-order-list .buyer-order-item {
-        width: 80dvw;
-        height: 20dvh;
-        margin: 5dvh;
+    .buyer-order {
+        width: 74dvw;
+        height: 100dvh;
         display: flex;
         align-items: center;
         justify-content: center;
+        flex-direction: column;
+    }
+    .buyer-order .buyer-order-list .buyer-order-item {
+        width: 65dvw;
+        height: 22dvh;
+        margin: 3dvh 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        justify-content: center;
         cursor: pointer;
         font-family: 'Lato', sans-serif;
+        background-color: #ffffff;
+    }
+
+    .buyer-order .buyer-order-list .buyer-order-item .order-space-image{
+        width: 70dvw;
+        height: 10dvh;
+        margin: 2dvw;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .buyer-order .buyer-order-list .buyer-order-item .order-space{
+        width: 20dvw;
+        height: 10dvh;
+        margin: 2dvw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .buyer-order .buyer-order-list .buyer-order-item .order-space-image{
+        width: 70dvw;
+        height: 20dvh;
+        margin: 2dvw;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
     }
     
-.buyer-order .buyer-order-list-pagination {
-    width: 80dvw;
-    height: 10dvh;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-}
+    .buyer-order .buyer-order-list .buyer-order-item .order-space-image img{
+        height: 10dvh;
+    }
+    .buyer-order .buyer-order-list .buyer-order-item .order-space p{
+        margin: 0.2dvh ;
+        font-size: 10px;
+        width: auto;
+    }
 
-.buyer-order .buyer-order-list-pagination button{
-    width: 15dvw;
-    height: 5dvh;
-    outline: none;
-    border: none;
-    cursor: pointer;
-    color: #fff;
-    border-radius: 2px;
-    background-color: #c44569;
-}
+    .buyer-order .buyer-order-list .buyer-order-item .order-space .stat-pending {
+        width: 13dvw;
+        height: 5dvh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 1dvh 0;
+        border-radius: 2px;
+        font-size: 10px;
+        color: #fff;
+        display: none;
+        background-color: #ffa502;
+    }
+    
+    .buyer-order .buyer-order-list .buyer-order-item .order-space .stat-delivered {
+        width: 15dvw;
+        height: 5dvh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 1dvh 0;
+        border-radius: 2px;
+        font-size: 10px;
+        color: #fff;
+        background-color: #2ed573;
+    }
 
-.buyer-order .buyer-order-list-pagination button:disabled{
-    width: 15dvw;
-    height: 5dvh;
-    outline: none;
-    border: none;
-    cursor: pointer;
-    color: #000000;
-    border: 1px solid #000;
-    border-radius: 2px;
-    background-color:transparent;
-}
-
-.buyer-order .buyer-order-list-pagination p{
-    height: 5dvh;
-    padding: 0px 10px;
-    border: 1px solid #000;
-    margin: 0px 10px;
-    width: 40px;
-    height: 5dvh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 30px;
-    font-family: 'Lato', sans-serif;
-}
+    .buyer-order .buyer-order-list .buyer-order-item .order-space .btn-verify {
+        width: 15dvw;
+        height: 5dvh;
+        outline: none;
+        border: none;
+        cursor: pointer;
+        color: #fff;
+        margin: 0.3dvh 0;
+        font-size: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #ff4757;
+    }
+    .buyer-order .buyer-order-list .buyer-order-item .order-space .btn-loading {
+        width: 15dvw;
+        height: 5dvh;
+        outline: none;
+        border: none;
+        cursor: pointer;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #7bed9f8a;
+    }
+    .buyer-order .buyer-order-list-pagination button{
+        width: 20dvw;
+        height: 5dvh;
+        outline: none;
+        border: none;
+        cursor: pointer;
+        color: #fff;
+        border-radius: 2px;
+        background-color: #c44569;
+    }
+    
+    .buyer-order .buyer-order-list-pagination button:disabled{
+        width: 20dvw;
+        height: 5dvh;
+        outline: none;
+        border: none;
+        cursor: pointer;
+        color: #000000;
+        border: 1px solid #000;
+        border-radius: 2px;
+        background-color:transparent;
+    }
 }

@@ -2,19 +2,18 @@ import { useEffect, useState } from "react";
 import "./OrderPending.css"
 import { useSelector } from "react-redux";
 import { useMutation, useQuery } from "react-query";
-import {  ApproveDelivery, getPendingOrderPaginate, verifyPayment } from "../../../hooks/orderHook";
+import {  ApproveDelivery, getPendingOrderPaginate, verifyPayment } from "../../../hooks/adminHook";
 
 function OrderPending() {
   const [page, setPage] = useState(0);
   const [verifyLoading, setVerifyLoading] = useState(null);
   const [deliverLoading, setDeliverLoading] = useState(null);
-  const user = useSelector((state: any) => state.auth.user);
-  const token = useSelector((state: any) => state.auth.userToken);
+  const token = useSelector((state: any) => state.auth.adminToken);
 
   const { isLoading, data, isPreviousData, refetch } = useQuery({
     queryKey: ["order", page],
     // @ts-ignore
-    queryFn: () => getPendingOrderPaginate({ page: page }),
+    queryFn: () => getPendingOrderPaginate({ page, token }),
     keepPreviousData: true,
   });
 
@@ -23,6 +22,7 @@ function OrderPending() {
   const payment = useMutation(verifyPayment, {
     onSuccess: (data) => {
       console.log("payement data", data);
+      refetch();
       if (data.paid){
         setVerifyLoading(null);
       }
@@ -46,7 +46,7 @@ function OrderPending() {
 
   useEffect(() => {
     refetch();
-  }, []);
+  }, [data]);
 
   const handleOrderVerify = (data: any, id: any) => {
     payment.mutate({tx_ref: data});
@@ -55,7 +55,7 @@ function OrderPending() {
   }
 
   const handleOrderDeliver = (id:any) => {
-    deliver.mutate(id)
+    deliver.mutate({id, token})
     setDeliverLoading(id)
     refetch()
   }

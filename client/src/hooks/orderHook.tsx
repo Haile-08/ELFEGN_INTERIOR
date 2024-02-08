@@ -1,5 +1,6 @@
 import axiosBaseURL from "../config/axios";
 
+//taken
 export const Order = async (data: object) => {
   const order = await axiosBaseURL
     .post(`/v1/order/create`, data)
@@ -15,6 +16,7 @@ export const Order = async (data: object) => {
   return order;
 };
 
+//taken
 export const getOrder = async () => {
   const order = await axiosBaseURL
     .get(`/v1/order/get`)
@@ -31,10 +33,15 @@ export const getOrder = async () => {
   return order;
 };
 
-export const getOrderPaginate = async (data: object) => {
+//taken
+export const getOrderPaginate = async ({page, id, token}: any) => {
   const order = await axiosBaseURL
     /*@ts-ignore */
-    .get(`/v1/order/getpagenated/?page=${data?.page}&id=${data?.id}`)
+    .get(`/v1/order/getpagenated/?page=${page}&id=${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
     .then(function (res) {
       return res;
     })
@@ -48,44 +55,12 @@ export const getOrderPaginate = async (data: object) => {
   return order;
 };
 
-export const getPendingOrderPaginate = async (data: object) => {
-  const order = await axiosBaseURL
-    /*@ts-ignore */
-    .get(`/v1/order/getpendingpagenated/?page=${data?.page}`)
-    .then(function (res) {
-      return res;
-    })
-    .then(function (resData) {
-      console.log(resData.data);
-      return resData.data;
-    })
-    .catch(function (err) {
-      console.log(err);
-    });
-  return order;
-};
 
-export const getDeliveredOrderPaginate = async (data: object) => {
-  const order = await axiosBaseURL
-    /*@ts-ignore */
-    .get(`/v1/order/getdeliveredpagenated/?page=${data?.page}`)
-    .then(function (res) {
-      return res;
-    })
-    .then(function (resData) {
-      console.log(resData.data);
-      return resData.data;
-    })
-    .catch(function (err) {
-      console.log(err);
-    });
-  return order;
-};
 
-export const verifyPayment = async (data: object) => {
-  console.log(data);
+//taken
+export const verifyPayment = async ({tx_ref}: any) => {
   const order = await axiosBaseURL
-    .post(`/v1/order/verify`, data)
+    .post(`/v1/order/verify`, {tx_ref})
     .then(function (res) {
       return res;
     })
@@ -96,22 +71,5 @@ export const verifyPayment = async (data: object) => {
     .catch(function (err) {
       console.log(err);
     });
-  return order;
-};
-
-export const ApproveDelivery = async (id: string) => {
-  const order = await axiosBaseURL
-    .get(`/v1/order/deliver/${id}`)
-    .then(function (res) {
-      return res;
-    })
-    .then(function (resData) {
-      console.log(resData.data)
-      return resData.data;
-    })
-    .catch(function (err) {
-      console.log(err);
-    });
-
   return order;
 };

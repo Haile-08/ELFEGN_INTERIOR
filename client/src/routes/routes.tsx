@@ -57,10 +57,9 @@ function ErrorPage() {
 }
 
 function Routes() {
-  // const isAdmin = Boolean(useSelector((state: any) => state.auth.adminToken));
-  // const isBuyer = Boolean(useSelector((state: any) => state.auth.buyerToken));
-  // const isSeller = Boolean(useSelector((state: any) => state.auth.sellerToken));
-
+  const isAdmin = Boolean(useSelector((state: any) => state.auth.adminToken));
+  const isUser = Boolean(useSelector((state: any) => state.auth.userToken));
+ 
   const router = createBrowserRouter([
     {
       path: "/",
@@ -128,8 +127,7 @@ function Routes() {
     },
     {
       path: "/admin",
-      // element: isAdmin ? <Admin /> : <Navigate to="/admin/login" />,
-      element:  <Admin />, 
+      element: isAdmin ? <Admin /> : <Navigate to="/admin/login" />,
       errorElement: <ErrorPage />,
       children: [
         {
@@ -168,27 +166,27 @@ function Routes() {
       element: <AdminLogin />,
       errorElement: <ErrorPage />,
     },
+    
     {
       path: "/buyerpage",
-      // element: isBuyer ? <BuyerPage /> : <Navigate to="/login" />,
       element: <BuyerPage />,
       errorElement: <ErrorPage />,
       children: [
         {
           path: "/buyerpage/shop",
-          element: <BuyerShop />,
+          element:  <BuyerShop /> ,
         },
         {
           path: "/buyerpage/profile",
-          element: <BuyerProfile />,
+          element: isUser ? <BuyerProfile />: <Navigate to="/account/login" />,
         },
         {
           path: "/buyerpage/order",
-          element: <BuyerOrder />,
+          element: isUser ? <BuyerOrder />: <Navigate to="/account/login" />,
         },
         {
           path: "/buyerpage/payment",
-          element: <Payment />,
+          element: isUser ? <Payment />: <Navigate to="/account/login" />,
           children: [
             {
               path: "/buyerpage/payment/success",

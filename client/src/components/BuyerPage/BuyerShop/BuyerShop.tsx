@@ -3,7 +3,7 @@ import { useMutation, useQuery } from "react-query";
 import { motion } from "framer-motion";
 import { useNavigate, useOutletContext, useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setLogin } from "../../../actions/authSlice";
 import { getUser } from "../../../hooks/userHook";
 import { getAllProduct } from "../../../hooks/productHook";
@@ -19,12 +19,12 @@ interface GiftItem {
 function BuyerShop() {
   const dispatch = useDispatch();
   const { data, isLoading, refetch } = useQuery('myData', getAllProduct);
-  const {  checkDate, checkStar, checkCategory }: any =
-    useOutletContext();
-    const [searchParams, setSearchParams] = useSearchParams();
+  const outletContext = useOutletContext();
+  const { checkDate, checkStar, checkCategory }: any = outletContext || {}; // Ensure outletContext is not null
+  
+  const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
 
-  console.log("data", data)
   const {mutate} = useMutation(getUser, {
     onSuccess: (data) => {
       console.log("user",data);

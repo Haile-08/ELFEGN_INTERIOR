@@ -1,14 +1,12 @@
 const express = require("express");
 const multer = require("multer");
 const path = require("path");
-const buyerAuth = require("../../middleware/buyerAuth");
-const sellerAuth = require("../../middleware/sellerAuth");
+const userAuth = require("../../middleware/userAuth");
 
 const {
   handleUpdateUser,
   handleimageUpload,
   handleFetchUser,
-  handleUserType,
 } = require("../../controller/user.constroller");
 
 const storage = multer.diskStorage({
@@ -27,18 +25,12 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 const router = express.Router();
-
-router.put("/update/:id", buyerAuth, handleUpdateUser);
-router.put("/update/seller/:id", sellerAuth, handleUpdateUser);
-router.post("/upload", upload.single("image"), buyerAuth, handleimageUpload);
-router.post(
-  "/upload/seller",
-  upload.single("image"),
-  sellerAuth,
-  handleimageUpload
-);
+//taken
+router.put("/update/:id", userAuth, handleUpdateUser);
+//taken
+router.post("/upload", upload.single("image"), userAuth, handleimageUpload);
+//taken
 router.get("/get/:id", handleFetchUser);
-router.post("/user/type", handleUserType);
 
 
 module.exports = router;

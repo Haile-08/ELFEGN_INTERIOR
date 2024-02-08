@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 function PaymentSuccess() {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  
   const handleStorNav = (e: any) => {
     e.preventDefault();
     navigate("/buyerpage/shop?user=null");

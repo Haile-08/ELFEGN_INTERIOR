@@ -26,13 +26,12 @@ function HomeBlogsPage() {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const [page, setPage] = useState(0);
+
   const { data, isPreviousData, refetch } = useQuery({
     queryKey: ["blogs", page],
     queryFn: () => retrieveBlogs(page),
     keepPreviousData: true,
   });
-
-  console.log(data);
 
   const handleNav = (id: string) => {
     navigate(`/blogdisplay/${id}`);
@@ -41,6 +40,7 @@ function HomeBlogsPage() {
   useEffect(() => {
     refetch();
   }, []);
+  
   return (
     <motion.div
       className="home-gift-page"

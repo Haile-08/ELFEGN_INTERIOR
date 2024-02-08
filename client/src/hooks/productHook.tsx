@@ -1,5 +1,6 @@
 import axiosBaseURL from "../config/axios";
 
+//taken
 export const getAllProduct = async () => {
     const product = await axiosBaseURL
       .get(`/v1/product/get`)
@@ -16,9 +17,14 @@ export const getAllProduct = async () => {
     return product;
 };
 
-export const getAProduct = async (id: string) => {
+//taken
+export const getAProduct = async ({id, token}:any) => {
   const product = await axiosBaseURL
-    .get(`/v1/product/get/${id}`)
+    .get(`/v1/product/get/${id}`,{
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
     .then(function (res) {
       return res;
     })
@@ -33,13 +39,14 @@ export const getAProduct = async (id: string) => {
   return product;
 };
 
+//taken
 export const updateProductRating = async ({ data, token }: any) => {
   const rating = await axiosBaseURL
-    .post(`/v1/product/rating`, data /*,{
+    .post(`/v1/product/rating`, data ,{
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    }*/)
+    })
     .then(function (res) {
       return res;
     })

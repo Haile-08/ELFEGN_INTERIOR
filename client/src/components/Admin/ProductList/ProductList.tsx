@@ -11,7 +11,7 @@ function ProductList() {
 
     const { isLoading, data, isPreviousData, refetch } = useQuery({
       queryKey: ["product", page],
-      queryFn: () => retrieveProducts(page),
+      queryFn: () => retrieveProducts({page, token: adminToken}),
       keepPreviousData: true,
     });
 

@@ -1,8 +1,7 @@
 import "./Dashboard.css";
 import {  BsBoxes} from "react-icons/bs";
-import { BsCashCoin } from "react-icons/bs";
 import { TbBrandBlogger } from "react-icons/tb";
-import { CiDeliveryTruck, CiGift } from "react-icons/ci";
+import { CiDeliveryTruck } from "react-icons/ci";
 import { useQuery } from "react-query";
 import { getAllCount } from "../../../hooks/adminHook";
 import { useNavigate } from "react-router-dom";

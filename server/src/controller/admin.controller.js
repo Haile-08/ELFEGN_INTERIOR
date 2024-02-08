@@ -1,5 +1,4 @@
 const Admin = require("../models/admin.models");
-const Gift = require("../models/gift.models");
 const Product = require("../models/product.models")
 const Blog = require("../models/blog.models");
 const Order = require("../models/orders.model");
@@ -112,28 +111,7 @@ const handleProductDelete = async (req, res) => {
   }
 };
 
-/* Admin Gift */
-const handleAdminDeleteAGift = async (req, res) => {
-  try {
-    const id = req.params.id;
-    await Gift.findByIdAndDelete(id);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
 
-const handleAdminGetAllGifts = async (req, res) => {
-  try {
-    const gifts = await Gift.find();
-    res.status(201).json({
-      message: "Gifts fetched successfully",
-      success: true,
-      gifts,
-    });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
 
 const handleDashBoardCount = async (req, res) => {
   try {
@@ -161,7 +139,5 @@ module.exports = {
   handleProductPost,
   handleGetProducts,
   handleProductDelete,
-  handleAdminDeleteAGift,
-  handleAdminGetAllGifts,
   handleDashBoardCount,
 };

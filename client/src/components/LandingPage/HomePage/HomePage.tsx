@@ -9,7 +9,6 @@ import close from "../../../assets/close.png";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
-import { getAllGifts } from "../../../hooks/giftHook";
 import { useQuery } from "react-query";
 import { useTranslation } from "react-i18next";
 import { MdOutlineLanguage } from "react-icons/md";
@@ -20,10 +19,9 @@ function HomePage() {
   const [searchModal, setSearchModal] = useState(false);
   const [loading, setLoading] = useState(true);
   const [searchString, setSearchString] = useState();
-  const product = useQuery(["product"], getAllProduct);
   const { t, i18n } = useTranslation();
 
-  console.log("products", product.data)
+  const product = useQuery(["product"], getAllProduct);
 
   const startsWith = (str: any) => (word: any) =>
     str ? word.slice(0, str.length).toLowerCase() === str.toLowerCase() : false;
@@ -33,6 +31,7 @@ function HomePage() {
       setLoading(false);
     }, 1000);
   }, []);
+
   const searchShadowVariant = {
     visible: {
       opacity: 0.3,

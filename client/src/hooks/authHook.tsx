@@ -1,6 +1,6 @@
 import axiosBaseURL from "../config/axios";
 
-
+//taken
 export const logout = async () => {
   const auth = await axiosBaseURL
     .get("/v1/auth/logout")
@@ -16,6 +16,7 @@ export const logout = async () => {
   return auth;
 };
 
+//taken
 export const signupUser = async (user: object) => {
   const userdata = await axiosBaseURL
     .post("/v1/auth/signup", user)
@@ -31,6 +32,7 @@ export const signupUser = async (user: object) => {
   return userdata;
 };
 
+//taken
 export const loginUser = async (user: object) => {
   const data = await axiosBaseURL
     .post("/v1/auth/login", user, { withCredentials: true })
@@ -48,6 +50,7 @@ export const loginUser = async (user: object) => {
     return data;
 };
 
+//taken
 export const requestReset = async (email: string) => {
   await axiosBaseURL
     .post("/v1/auth/requestResetPassword", { email })
@@ -63,6 +66,7 @@ export const requestReset = async (email: string) => {
     });
 };
 
+//taken
 export const reset = async (user: object) => {
   await axiosBaseURL
     .post("/v1/auth/resetPassword", user)

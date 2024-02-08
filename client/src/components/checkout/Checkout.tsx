@@ -53,12 +53,13 @@ function Checkout() {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const user = useSelector((state: any) => state.auth.user);
+  const token = useSelector((state: any) => state.auth.userToken);
   const [paymentLoading, setPaymentLoading] = useState(false);
 
   const product = useQuery({
     queryKey: ["gift", id],
     //@ts-ignore
-    queryFn: () => getAProduct(id),
+    queryFn: () => getAProduct({id, token}),
   });
 
   const { mutate } = useMutation(Order, {

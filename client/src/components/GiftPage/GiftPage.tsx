@@ -34,7 +34,7 @@ function GiftPage() {
   const product = useQuery({
     queryKey: ["gift", id],
     //@ts-ignore
-    queryFn: () => getAProduct(id),
+    queryFn: () => getAProduct({id, token}),
   });
   const products = useQuery(["all_gift"], getAllProduct);
 
@@ -69,7 +69,7 @@ function GiftPage() {
 
   
   const checkItemCategory = (item: any) => {
-    if (item?.gift_category === product?.data?.gift_category) {
+    if (item?.category === product?.data?.category) {
       return true;
     } else {
       return false;
@@ -188,9 +188,8 @@ function GiftPage() {
               <p>{t("buyerGoodGiftSuggestion")}</p>
             </div>
             <div className="gift-suggestion-list">
-              {products?.data?.gifts
-                ?.filter(checkItemCategory)
-                .sort((a: any, b: any) => b.gift_star - a.gift_star)
+              {products?.data?.filter(checkItemCategory)
+                .sort((a: any, b: any) => b.star - a.star)
                 .slice(0, 3)
                 .map((item: any) => (
                   <div
@@ -201,14 +200,14 @@ function GiftPage() {
                       <img
                         src={
                           "http://localhost:5000/" +
-                          item.gift_image.substring(6)
+                          item.image.substring(6)
                         }
                         alt="content-image"
                         crossOrigin="anonymous"
                       />
                     </div>
                     <div className="gift-suggestion-item-price">
-                      {item.gift_price} Birr
+                      {item.price} Birr
                     </div>
                   </div>
                 ))}

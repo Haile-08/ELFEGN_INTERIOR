@@ -1,6 +1,6 @@
 const express = require("express");
 const passport = require("passport");
-const buyerAuth = require("../../middleware/buyerAuth");
+const userAuth = require("../../middleware/userAuth");
 const jwt = require("jsonwebtoken");
 
 const {
@@ -14,9 +14,13 @@ const {
 
 const router = express.Router();
 
+//taken
 router.post("/signup", handleSignUp);
+//taken
 router.post("/login", handleLogin);
+//taken
 router.post("/requestResetPassword", requestPasswordReset);
+//taken
 router.post("/resetPassword", resetPassword);
 router.get(
   "/google",
@@ -40,7 +44,8 @@ router.get(
     );
   }
 );
-router.get("/logout", buyerAuth, handleLogout);
+//taken
+router.get("/logout", userAuth, handleLogout);
 router.get("/user/:id", handleGetUserInfo);
 
 module.exports = router;

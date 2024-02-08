@@ -45,10 +45,6 @@ passport.use(
             ? profile.displayName.split(" ")[1]
             : "unknown",
         });
-        await Balance.create({
-          user_id: newUser._id,
-          balance: 0,
-        });
         sendEmail(
           email,
           "Gift shop",

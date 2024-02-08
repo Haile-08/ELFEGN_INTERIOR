@@ -12,7 +12,7 @@ import google from "../../../assets/google-login.png";
 import "../Page.css";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { useMutation } from 'react-query';
 import { signupUser } from '../../../hooks/authHook';
@@ -31,7 +31,6 @@ type ValidationSchemaType = z.infer<typeof schema>
 function Page3() {
   const [isVisible, setVisible] = useState(false);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const { t } = useTranslation();
 
 

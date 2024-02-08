@@ -43,7 +43,6 @@ function Page1() {
 
   const onSubmit:  SubmitHandler<ValidationSchemaType> = (data:any) => {
     const { form_first_name, form_last_name, form_email } = data;
-    console.log(data);
     dispatch(
       setPage1({
         firstname: form_first_name,

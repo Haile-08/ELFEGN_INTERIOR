@@ -5,10 +5,11 @@ import { removeABlog, retrieveAdminBlogs } from "../../../hooks/adminHook";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+
 function BlogList() {
   const token = useSelector((state: any) => state.auth.adminToken);
   const [page, setPage] = useState(0);
-
+  
   const { data, isLoading, isPreviousData, refetch } = useQuery({
     queryKey: ["blogs", page],
     queryFn: () => retrieveAdminBlogs(token, page),

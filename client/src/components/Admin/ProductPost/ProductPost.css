@@ -199,6 +199,15 @@
 }
 
 @media screen and (max-width: 600px) {
+    .product-post {
+        width: 70dvw;
+        height: 100dvh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        overflow-x: none;
+    }
 .seller-post-gift .back img{
     width: 8dvw;
     cursor: pointer;

@@ -49,13 +49,18 @@ function SignIn() {
 
   const { mutate } = useMutation(loginUser, {
     onSuccess: (data) => {
+      console.log("user", data)
+      if(data.token){
         dispatch(
           setLogin({
             user: data.user,
             userToken: data.token,
           })
         );
-        navigate("/buyerpage/shop?tokenid=null");
+        navigate(`/buyerpage/shop?user=${data.token}&id=${data.user._id}`);
+      } else {
+        setLoginError(true);
+      }
     },
     onError: () => {
       setLoginError(true);

@@ -1,5 +1,6 @@
 import axiosBaseURL from "../config/axios";
 
+//taken
 export const retrieveBlogs = async (page: number) => {
   const blog = await axiosBaseURL
     .get(`/v1/blog/posts/?page=${page}`)
@@ -18,6 +19,7 @@ export const retrieveBlogs = async (page: number) => {
   return blog;
 };
 
+//taken
 export const retrieveABlog = async (id: string) => {
   const blog = await axiosBaseURL
     .get(`/v1/blog/post/${id}`)
@@ -35,6 +37,7 @@ export const retrieveABlog = async (id: string) => {
   return blog;
 };
 
+//taken
 export const postComment = async (data: object) => {
   console.log();
   await axiosBaseURL
@@ -50,6 +53,7 @@ export const postComment = async (data: object) => {
     });
 };
 
+//taken
 export const retrieveAComment = async (id: string) => {
   console.log(id);
   const blog = await axiosBaseURL
@@ -64,20 +68,5 @@ export const retrieveAComment = async (id: string) => {
       console.log(err);
     });
   console.log(blog);
-  return blog;
-};
-export const removeAComment = async (id: string) => {
-  const blog = await axiosBaseURL
-    .delete(`/v1/blog/comment/${id}`)
-    .then(function (res) {
-      return res;
-    })
-    .then(function (resData) {
-      return resData.data;
-    })
-    .catch(function (err) {
-      console.log(err);
-    });
-
   return blog;
 };
