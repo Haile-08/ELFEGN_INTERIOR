@@ -138,7 +138,7 @@ const handleLogout = async (req, res) => {
     if (err) {
       console.error("Error during logout:", err);
     } else {
-      res.redirect("http://localhost:5173/account/login");
+      res.redirect("https://elfegn.netlify.app/account/login");
     }
   });
 };

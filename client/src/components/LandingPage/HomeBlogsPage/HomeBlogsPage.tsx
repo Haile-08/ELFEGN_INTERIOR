@@ -84,7 +84,7 @@ function HomeBlogsPage() {
                 <div className="blog-card-img">
                   <img
                     src={
-                      "http://localhost:5000" + blog?.image.substring(6)
+                      "https://elfegn.onrender.com" + blog?.image.substring(6)
                     }
                     alt="cover"
                     crossOrigin="anonymous"

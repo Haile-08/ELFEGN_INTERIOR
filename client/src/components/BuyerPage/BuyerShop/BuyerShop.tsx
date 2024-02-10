@@ -75,7 +75,7 @@ function BuyerShop() {
                   >
                     <img
                       src={
-                        "http://localhost:5000/" +
+                        "https://elfegn.onrender.com/" +
                         item.image.substring(6)
                       }
                       alt="image"

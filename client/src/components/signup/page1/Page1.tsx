@@ -53,7 +53,7 @@ function Page1() {
     navigate("/account/page/2");
   };
   const handleGoogleRedirect = () => {
-    window.open("http://localhost:5000/v1/auth/google", "_self");
+    window.open("https://elfegn.onrender.com/v1/auth/google", "_self");
   };
 
   return (

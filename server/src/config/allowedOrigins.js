@@ -1,5 +1,5 @@
 const allowedOrigins = {
-  origin: ["http://localhost:5173"],
+  origin: ["elfegn.netlify.app"],
   credentials: true,
 };
 

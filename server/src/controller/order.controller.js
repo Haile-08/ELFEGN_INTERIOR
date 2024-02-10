@@ -33,7 +33,7 @@ const handleOrderCreate = async (req, res) => {
           last_name: LastName,
           phone_number: PhoneNumber,
           tx_ref,
-          return_url: "http://localhost:5173/buyerpage/payment/verify",
+          return_url: "https://elfegn.netlify.app/buyerpage/payment/verify",
         },
         {
           headers: {
@@ -75,7 +75,7 @@ const handleOrderCreate = async (req, res) => {
           status: "fail",
           url: null,
         });
-        res.redirect("http://localhost:5173/buyerpage/payment/failure");
+        res.redirect("https://elfegn.netlify.app/buyerpage/payment/failure");
       }
     } else {
       console.log("error");

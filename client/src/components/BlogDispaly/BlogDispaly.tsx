@@ -164,7 +164,7 @@ function BlogDispaly() {
                           <img
                             src={
                               comment.image
-                                ? "https://merita.onrender.com" +
+                                ? "https://elfegn.onrender.com" +
                                   comment?.image?.substring(6)
                                 : imgicon
                             }
@@ -196,7 +196,7 @@ function BlogDispaly() {
           <div className="blog-display-content">
             <div className="blog-display-content-image">
               <img
-                src={"https://merita.onrender.com/" + data?.image.substring(6)}
+                src={"https://elfegn.onrender.com" + data?.image.substring(6)}
                 alt="content-image"
                 crossOrigin="anonymous"
               />

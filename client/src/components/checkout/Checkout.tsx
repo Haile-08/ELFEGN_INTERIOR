@@ -129,7 +129,7 @@ function Checkout() {
         <div className="checkout-info-gift">
           <img
             src={
-              "http://localhost:5000/" + product.data.image.substring(6)
+              "https://elfegn.onrender.com/" + product.data.image.substring(6)
             }
             alt="content-image"
             crossOrigin="anonymous"

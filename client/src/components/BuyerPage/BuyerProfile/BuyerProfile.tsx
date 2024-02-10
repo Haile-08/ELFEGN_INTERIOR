@@ -92,7 +92,7 @@ function BuyerProfile() {
             {user?.image ? (
               <img
                 crossOrigin="anonymous"
-                src={`http://localhost:5000/${user.image.substring(6)}`}
+                src={`https://elfegn.onrender.com/${user.image.substring(6)}`}
               />
             ) : (
               <img src={a_user} alt="user" />

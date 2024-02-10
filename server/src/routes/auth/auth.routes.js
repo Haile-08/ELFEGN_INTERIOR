@@ -31,7 +31,7 @@ router.get(
 router.get(
   "/redirect/google",
   passport.authenticate("google", {
-    failureRedirect: "http://localhost:5173/account/login",
+    failureRedirect: "https://elfegn.netlify.app/account/login",
   }),
   (req, res) => {
     const userToken = jwt.sign(
@@ -40,7 +40,7 @@ router.get(
     );
     console.log(userToken)
     res.redirect(
-        `http://localhost:5173/buyerpage/shop?user=${userToken}&id=${req.user._id}`
+        `https://elfegn.netlify.app/buyerpage/shop?user=${userToken}&id=${req.user._id}`
     );
   }
 );

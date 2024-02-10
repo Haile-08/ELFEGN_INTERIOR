@@ -63,7 +63,7 @@ function HomeGiftPage() {
               <div className="gift-landing-page-image">
                 <img
                   src={
-                    "http://localhost:5000/" + gift.image.substring(6)
+                    "https://elfegn.onrender.com/" + gift.image.substring(6)
                   }
                   alt="image"
                   crossOrigin="anonymous"

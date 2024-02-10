@@ -53,7 +53,7 @@ function BuyerOrder() {
                 <div className="order-space-image">
                  <img
                   src={
-                    "http://localhost:5000/" + order?.ProductImage?.substring(6)
+                    "https://elfegn.onrender.com/" + order?.ProductImage?.substring(6)
                   }
                   alt="content-image"
                   crossOrigin="anonymous"

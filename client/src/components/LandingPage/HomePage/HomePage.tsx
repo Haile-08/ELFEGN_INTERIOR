@@ -134,7 +134,7 @@ function HomePage() {
                       <div className="search-modal-input-res-image">
                         <img
                           src={
-                            "http://localhost:5000/" +
+                            "https://elfegn.onrender.com/" +
                             gift.image.substring(6)
                           }
                           alt="image"

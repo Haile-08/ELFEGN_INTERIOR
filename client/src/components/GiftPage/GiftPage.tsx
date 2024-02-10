@@ -126,7 +126,7 @@ function GiftPage() {
             <div className="gift-image">
               <img
                 src={
-                  "http://localhost:5000/" +
+                  "https://elfegn.onrender.com/" +
                   product?.data?.image.substring(6)
                 }
                 alt="content-image"
@@ -199,7 +199,7 @@ function GiftPage() {
                     <div className="gift-suggestion-item-image">
                       <img
                         src={
-                          "http://localhost:5000/" +
+                          "https://elfegn.onrender.com/" +
                           item.image.substring(6)
                         }
                         alt="content-image"

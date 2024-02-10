@@ -64,7 +64,7 @@ function BlogList() {
               onClick={() => navigate("/admin/blog/list/comments/" + blog._id)}
             >
               <img
-                src={"http://localhost:5000" + blog.image.substring(6)}
+                src={"https://elfegn.onrender.com" + blog.image.substring(6)}
                 alt="cover"
                 crossOrigin="anonymous"
               />

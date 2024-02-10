@@ -53,7 +53,7 @@ function BlogComments() {
               {comment.image !== " " ? (
                 <img
                   src={
-                    "https://merita.onrender.com" + comment?.image?.substring(6)
+                    "https://elfegn.onrender.com" + comment?.image?.substring(6)
                   }
                   alt="cover"
                   crossOrigin="anonymous"
