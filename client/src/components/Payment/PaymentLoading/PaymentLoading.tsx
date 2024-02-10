@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import "./PaymentLoading.css";
-import { useMutation, useQuery } from "react-query";
-import { getOrder, verifyPayment } from "../../../hooks/orderHook";
+import { useMutation } from "react-query";
+import { verifyPayment } from "../../../hooks/orderHook";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
@@ -10,7 +10,6 @@ function PaymentLoading() {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const tx_ref = useSelector((state: any) => state.auth.tx_ref);
-  const { data } = useQuery(["order"], getOrder);
   const { mutate } = useMutation(verifyPayment, {
     onSuccess: (data) => {
       if (data.paid) {

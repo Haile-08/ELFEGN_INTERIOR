@@ -3,7 +3,6 @@ import "./BuyerPage.css";
 import { useMutation } from "react-query";
 import { Outlet, useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.svg";
-import amhlogo from "../../assets/amhlogo.svg";
 import plus from "../../assets/plus.png";
 import minus from "../../assets/minus.png";
 import exit from "../../assets/exit.png";
@@ -15,7 +14,6 @@ import { logout } from "../../hooks/authHook";
 import { useDispatch } from "react-redux";
 import { setLogout } from "../../actions/authSlice";
 import { useTranslation } from "react-i18next";
-import { MdOutlineLanguage } from "react-icons/md";
 
 function BuyerPage() {
   const [modal, setModal] = useState(false);

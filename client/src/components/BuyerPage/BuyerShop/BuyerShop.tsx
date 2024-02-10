@@ -22,7 +22,7 @@ function BuyerShop() {
   const outletContext = useOutletContext();
   const { checkDate, checkStar, checkCategory }: any = outletContext || {}; // Ensure outletContext is not null
   
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
   const {mutate} = useMutation(getUser, {

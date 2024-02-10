@@ -3,7 +3,6 @@ import { valibotResolver } from "@hookform/resolvers/valibot";
 import { object, string, minLength, maxLength } from "valibot";
 import { useCallback, useState } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { useDropzone } from "react-dropzone";
 import { useMutation } from "react-query";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -33,7 +32,6 @@ function ProductPost() {
   });
   const [postSuccess, setPostSuccess] = useState(false);
   const adminToken = useSelector((state: any) => state.auth.adminToken);
-  const navigate = useNavigate();
   /*@ts-ignore */
   const onDrop = useCallback((acceptedFiles) => {
     console.log(acceptedFiles);

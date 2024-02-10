@@ -1,7 +1,6 @@
 import "../signup/Signup.css";
 import "../signup/Page.css";
 import logo from "../../assets/logo.svg";
-import amhlogo from "../../assets/amhlogo.svg";
 import google from "../../assets/google-login.png";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
