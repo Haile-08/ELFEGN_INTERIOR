@@ -1,5 +1,5 @@
 const allowedOrigins = {
-  origin: ["elfegn.netlify.app"],
+  origin: ["https://elfegn.netlify.app"],
   credentials: true,
 };
 
